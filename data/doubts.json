@@ -1,0 +1,20 @@
+[
+  {
+    "subject": "Math",
+    "question": "How important are eigenvalues for the final exam?",
+    "answer": "Very important. Expect at least one conceptual or numerical question.",
+    "time": "2 days ago"
+  },
+  {
+    "subject": "DSA",
+    "question": "Is recursion asked directly in ET?",
+    "answer": "Usually indirectly via tree or divide-and-conquer problems.",
+    "time": "1 day ago"
+  },
+  {
+    "subject": "Python",
+    "question": "Should we memorize syntax or focus on logic?",
+    "answer": "Logic > syntax. Syntax errors are rarely tested.",
+    "time": "Today"
+  }
+]

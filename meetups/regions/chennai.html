@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chennai Meetups | Sundarbans House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== BRAND: BLACK + GOLD ===== */
+    :root {
+      --bg:        #080705;
+      --bg2:       #0d0b08;
+      --surface:   #110f0a;
+      --surface2:  #18150e;
+      --border:    rgba(212,160,23,0.13);
+      --border2:   rgba(212,160,23,0.22);
+      --gold:      #D4A017;
+      --gold-l:    #F0C040;
+      --gold-d:    #8B6914;
+      --gold-dim:  rgba(212,160,23,0.12);
+      --white:     #F5EDD0;
+      --white-dim: rgba(245,237,208,0.55);
+      --white-faint: rgba(245,237,208,0.08);
+      --green:     #c8a028;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--white); overflow-x: hidden; cursor: none; }
+
+    /* CURSOR */
+    #cur { position:fixed;top:0;left:0;width:8px;height:8px;background:var(--gold-l);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .15s,height .15s; }
+    #cur-ring { position:fixed;top:0;left:0;width:32px;height:32px;border:1.5px solid rgba(212,160,23,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%); }
+    body:has(a:hover,button:hover) #cur { width:14px;height:14px;background:var(--gold-l); }
+    body:has(a:hover,button:hover) #cur-ring { width:48px;height:48px;border-color:var(--gold); }
+
+    /* NOISE */
+    .noise { position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.025;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:200px 200px; }
+
+    /* AMBIENT */
+    .ambient { position:fixed;inset:0;pointer-events:none;z-index:0;
+      background:
+        radial-gradient(ellipse 70% 50% at -5% 0%,rgba(212,160,23,.05) 0%,transparent 55%),
+        radial-gradient(ellipse 50% 40% at 105% 100%,rgba(139,105,20,.05) 0%,transparent 55%),
+        radial-gradient(ellipse 40% 30% at 50% 50%,rgba(212,160,23,.02) 0%,transparent 60%); }
+
+    /* PRELOADER */
+    #preloader { position:fixed;inset:0;z-index:99999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity 0.8s ease; }
+    .preloader-orbit-wrap { position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center; }
+    .preloader-orbit-ring { position:absolute;inset:0;animation:orbit-spin 8s linear infinite; }
+    .preloader-orbit-ring svg { width:100%;height:100%; }
+    .preloader-orbit-ring textPath { fill:var(--gold);font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px; }
+    .preloader-logo-center { position:absolute;width:80px;height:80px;display:flex;align-items:center;justify-content:center; }
+    .preloader-logo-img { width:80px;height:80px;object-fit:contain;border-radius:50%;animation:pulse-logo 2s ease-in-out infinite;filter:drop-shadow(0 0 16px rgba(212,160,23,.7)); }
+    .preloader-logo-letter { font-family:'Cinzel',serif;font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--gold-l),var(--gold),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:pulse-logo 2s ease-in-out infinite; }
+    .preloader-bar { width:140px;height:2px;background:rgba(212,160,23,.1);border-radius:99px;margin:1.25rem auto 0.65rem;overflow:hidden; }
+    .preloader-fill { height:100%;width:0;background:linear-gradient(90deg,var(--gold-d),var(--gold-l),var(--gold-d));border-radius:99px;transition:width 1.2s cubic-bezier(.4,0,.2,1); }
+    .preloader-text { color:var(--white-dim);font-size:0.72rem;letter-spacing:.18em;text-transform:uppercase; }
+    @keyframes orbit-spin { from{transform:rotate(0deg);}to{transform:rotate(360deg);} }
+    @keyframes pulse-logo { 0%,100%{transform:scale(1);}50%{transform:scale(1.08);} }
+
+    /* NAVBAR */
+    nav { position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,border-color .4s;border-bottom:1px solid transparent; }
+    nav.scrolled { background:rgba(8,7,5,.92);backdrop-filter:blur(20px);border-color:var(--border); }
+    .nav-brand { display:flex;align-items:center;gap:10px;text-decoration:none; }
+    .nav-logo-wrap { width:38px;height:38px;border-radius:50%;overflow:hidden;border:1.5px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--gold);flex-shrink:0; }
+    .nav-logo-wrap img { width:100%;height:100%;object-fit:cover; }
+    .nav-brand-name { font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--white);letter-spacing:.1em; }
+    .nav-brand-sub { font-size:9px;font-weight:400;color:var(--white-dim);letter-spacing:.12em;text-transform:uppercase; }
+    .nav-links { display:flex;align-items:center;gap:28px; }
+    .nav-links a { font-size:13.5px;font-weight:400;color:var(--white-dim);text-decoration:none;transition:color .25s; }
+    .nav-links a:hover { color:var(--gold-l); }
+    .nav-links a.active { color:var(--gold); }
+    .nav-cta { background:var(--gold);color:#000;font-size:13px;font-weight:700;padding:9px 20px;border-radius:8px;text-decoration:none;transition:background .25s,transform .2s,box-shadow .25s;box-shadow:0 4px 20px rgba(212,160,23,.3);display:flex;align-items:center;gap:6px;letter-spacing:.04em; }
+    .nav-cta:hover { background:var(--gold-l);transform:translateY(-1px);box-shadow:0 8px 28px rgba(212,160,23,.45); }
+
+    /* HERO */
+    .hero { min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 48px 80px;position:relative;z-index:2; }
+    .hero-pill { display:inline-flex;align-items:center;gap:8px;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.3);padding:7px 16px;border-radius:100px;width:fit-content;font-size:12px;font-weight:500;color:var(--gold-l);margin-bottom:28px;opacity:0;transform:translateY(16px);animation:fadeUp .7s ease .2s forwards; }
+    .hero-pill-dot { width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse-dot 1.8s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6} }
+    .hero-title { font-family:'Cinzel',serif;font-size:clamp(50px,8.5vw,112px);font-weight:900;line-height:.95;letter-spacing:.01em;color:var(--white);opacity:0;transform:translateY(28px);animation:fadeUp .9s ease .4s forwards; }
+    .hero-title .accent { background:linear-gradient(135deg,var(--gold-l),var(--gold),var(--gold-d));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 20px rgba(212,160,23,.25)); }
+    .hero-desc { margin-top:28px;max-width:520px;font-size:16px;font-weight:300;line-height:1.75;color:var(--white-dim);opacity:0;transform:translateY(20px);animation:fadeUp .7s ease .7s forwards; }
+    .hero-actions { margin-top:40px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;opacity:0;transform:translateY(16px);animation:fadeUp .7s ease .9s forwards; }
+    .btn-primary { background:var(--gold);color:#000;font-size:14px;font-weight:700;padding:13px 28px;border-radius:10px;text-decoration:none;display:flex;align-items:center;gap:8px;transition:background .25s,transform .2s,box-shadow .3s;box-shadow:0 6px 28px rgba(212,160,23,.35);letter-spacing:.04em; }
+    .btn-primary:hover { background:var(--gold-l);transform:translateY(-2px);box-shadow:0 12px 36px rgba(212,160,23,.5); }
+    .btn-ghost { background:transparent;color:var(--white-dim);font-size:14px;font-weight:400;padding:13px 24px;border-radius:10px;text-decoration:none;display:flex;align-items:center;gap:8px;border:1px solid var(--border2);transition:color .25s,border-color .25s; }
+    .btn-ghost:hover { color:var(--gold-l);border-color:rgba(212,160,23,.4); }
+
+    /* STATS */
+    .stats-row { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden; }
+    .stat-cell { background:var(--surface);padding:36px 32px;display:flex;flex-direction:column;gap:6px;transition:background .3s; }
+    .stat-cell:hover { background:var(--surface2); }
+    .stat-num { font-family:'Cinzel',serif;font-size:48px;font-weight:700;color:var(--gold-l);line-height:1;letter-spacing:-.02em; }
+    .stat-lbl { font-size:12px;font-weight:400;color:var(--white-dim);letter-spacing:.05em; }
+
+    /* SECTION */
+    .section { padding:80px 48px;position:relative;z-index:2; }
+    .container { max-width:1160px;margin:0 auto; }
+    .sec-eyebrow { font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px; }
+    .sec-title { font-family:'Cinzel',serif;font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.1;letter-spacing:.01em; }
+    .sec-rule { width:40px;height:2px;background:var(--gold);border-radius:2px;margin:20px 0 0; }
+
+    /* UPCOMING CARD */
+    .upcoming-card { margin-top:48px;border-radius:18px;background:var(--surface);border:1px solid rgba(212,160,23,.18);overflow:hidden;position:relative; }
+    .upcoming-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-l),transparent); }
+    .upcoming-inner { display:grid;grid-template-columns:1fr 320px; }
+    .upcoming-info { padding:48px;border-right:1px solid var(--border); }
+    .upcoming-badge { display:inline-flex;align-items:center;gap:7px;background:rgba(212,160,23,.1);border:1px solid rgba(212,160,23,.3);color:var(--gold-l);padding:5px 14px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px; }
+    .upcoming-badge-dot { width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse-dot 1.5s ease-in-out infinite; }
+    .event-name { font-family:'Cinzel',serif;font-size:clamp(26px,3.2vw,42px);font-weight:700;line-height:1.1;letter-spacing:.01em;margin-bottom:24px; }
+    .event-chips { display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px; }
+    .chip { display:flex;align-items:center;gap:7px;background:var(--surface2);border:1px solid var(--border2);padding:8px 16px;border-radius:8px;font-size:13px;font-weight:400;color:var(--white-dim); }
+    .info-block { margin-bottom:32px; }
+    .info-lbl { font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block; }
+    .info-block p { font-size:14.5px;font-weight:300;line-height:1.8;color:var(--white-dim); }
+    .address-box { background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;gap:14px;align-items:flex-start; }
+    .address-pin { width:36px;height:36px;flex-shrink:0;border-radius:8px;background:var(--gold-dim);display:flex;align-items:center;justify-content:center;font-size:16px; }
+    .address-lines { display:flex;flex-direction:column;gap:3px; }
+    .address-lines strong { font-size:13.5px;font-weight:600;color:var(--white); }
+    .address-lines span { font-size:12px;font-weight:300;color:var(--white-dim);line-height:1.6; }
+    .address-map { display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--gold);text-decoration:none;margin-top:8px;transition:opacity .2s; }
+    .address-map:hover { opacity:.7; }
+
+    /* REGISTER PANE */
+    .upcoming-register { padding:48px 36px;display:flex;flex-direction:column; }
+    .spots-display { text-align:center;margin-bottom:20px; }
+    .spots-big { font-family:'Cinzel',serif;font-size:72px;font-weight:700;line-height:1;color:var(--gold-l);letter-spacing:-.03em;display:block; }
+    .spots-sub { font-size:11px;font-weight:400;color:var(--white-dim);letter-spacing:.12em;text-transform:uppercase;margin-top:4px;display:block; }
+    .reg-rule { height:1px;background:var(--border);margin:20px 0; }
+    .reg-desc { font-size:13px;font-weight:300;color:var(--white-dim);line-height:1.7;text-align:center;margin-bottom:24px; }
+    .register-cta { display:flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:#000;width:100%;padding:15px 20px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;transition:background .25s,transform .2s,box-shadow .3s;box-shadow:0 6px 28px rgba(212,160,23,.35);position:relative;overflow:hidden;letter-spacing:.04em; }
+    .register-cta::after { content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.15) 50%,transparent 70%);transform:translateX(-100%);transition:transform .55s; }
+    .register-cta:hover { background:var(--gold-l);transform:translateY(-2px);box-shadow:0 12px 36px rgba(212,160,23,.5); }
+    .register-cta:hover::after { transform:translateX(100%); }
+    .reg-closing { font-size:11px;font-weight:300;color:rgba(245,237,208,.25);text-align:center;margin-top:12px;letter-spacing:.05em; }
+    .reg-tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:4px; }
+    .rtag { font-size:11px;font-weight:400;padding:5px 12px;border-radius:6px;background:var(--white-faint);color:var(--white-dim);border:1px solid var(--border); }
+
+    /* TIMELINE */
+    .timeline { position:relative;margin-top:48px;padding-left:32px; }
+    .timeline::before { content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),transparent);opacity:.2; }
+    .tl-item { position:relative;margin-bottom:40px;opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease; }
+    .tl-item.visible { opacity:1;transform:translateY(0); }
+    .tl-dot { position:absolute;left:-38px;top:22px;width:13px;height:13px;border-radius:50%;border:2px solid var(--gold);background:var(--bg);transition:background .3s,box-shadow .3s; }
+    .tl-item:hover .tl-dot { background:var(--gold);box-shadow:0 0 0 5px rgba(212,160,23,.15); }
+
+    /* PAST CARD */
+    .past-card { background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color .3s,box-shadow .35s; }
+    .past-card:hover { border-color:rgba(212,160,23,.25);box-shadow:0 16px 56px rgba(0,0,0,.5); }
+    .past-card-head { padding:28px 32px 0; }
+    .past-card-top { display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px; }
+    .tl-badge { display:inline-block;font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);border:1px solid rgba(212,160,23,.22);padding:4px 12px;border-radius:100px; }
+    .past-insta { display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--white-dim);background:rgba(245,237,208,.06);border:1px solid var(--border2);padding:5px 13px;border-radius:100px;text-decoration:none;transition:color .2s,background .2s,border-color .2s; }
+    .past-insta:hover { color:var(--gold-l);background:rgba(212,160,23,.08);border-color:rgba(212,160,23,.3); }
+    .tl-title { font-family:'Cinzel',serif;font-size:22px;font-weight:700;letter-spacing:.01em;margin-bottom:10px;line-height:1.15; }
+    .past-meta-row { display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px; }
+    .past-chip { display:flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border);padding:6px 14px;border-radius:7px;font-size:12px;font-weight:400;color:var(--white-dim); }
+    .past-chip.green { border-color:rgba(212,160,23,.3);color:var(--gold-l);background:rgba(212,160,23,.06); }
+    .past-about { padding:0 32px 18px; }
+    .past-about-label { font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px; }
+    .past-about p { font-size:13.5px;font-weight:300;line-height:1.75;color:var(--white-dim); }
+    .past-stats { display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border); }
+    .past-stat { background:var(--surface);padding:18px 20px;text-align:center; }
+    .past-stat-num { font-family:'Cinzel',serif;font-size:26px;font-weight:700;color:var(--gold-l);line-height:1;letter-spacing:-.01em;display:block; }
+    .past-stat-lbl { font-size:10px;font-weight:400;color:var(--white-dim);letter-spacing:.08em;margin-top:3px;display:block; }
+    .past-photos { display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:170px 170px;gap:3px; }
+    .past-photos .ph:first-child { grid-row:1/3; }
+    .ph { overflow:hidden;position:relative;background:var(--surface2); }
+    .ph img { width:100%;height:100%;object-fit:cover;transition:transform .6s ease,filter .4s;filter:saturate(.75) brightness(.85); }
+    .ph:hover img { transform:scale(1.06);filter:saturate(1) brightness(1); }
+    .ph-ov { position:absolute;inset:0;background:linear-gradient(to top,rgba(8,7,5,.55),transparent 55%);opacity:0;transition:opacity .35s; }
+    .ph:hover .ph-ov { opacity:1; }
+    .ph-placeholder { width:100%;height:100%;background:linear-gradient(135deg,var(--surface2),var(--surface));display:flex;align-items:center;justify-content:center;color:rgba(212,160,23,.08);font-size:28px; }
+    .past-card-footer { padding:16px 32px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border); }
+    .past-footer-tags { display:flex;gap:8px;flex-wrap:wrap; }
+    .past-ftag { font-size:11px;font-weight:400;padding:4px 10px;border-radius:5px;background:var(--white-faint);color:var(--white-dim);border:1px solid var(--border); }
+    .past-view-more { display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--gold);text-decoration:none;transition:opacity .2s; }
+    .past-view-more:hover { opacity:.7; }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2; }
+    .footer-brand { display:flex;align-items:center;gap:10px; }
+    .footer-logo { width:32px;height:32px;border-radius:50%;background:var(--gold-dim);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:var(--gold);overflow:hidden; }
+    .footer-logo img { width:100%;height:100%;object-fit:cover; }
+    .footer-name { font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:.08em; }
+    .footer-right { font-size:12px;color:rgba(245,237,208,.2);letter-spacing:.05em; }
+
+    /* REVEAL */
+    .reveal { opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible { opacity:1;transform:translateY(0); }
+    .rd1 { transition-delay:.1s; }
+    .rd2 { transition-delay:.2s; }
+
+    @keyframes fadeUp { to { opacity:1;transform:translateY(0); } }
+
+    #particles { position:fixed;inset:0;pointer-events:none;z-index:0; }
+
+    @media (max-width:900px) {
+      nav { padding:0 20px; }
+      .nav-links,.nav-cta { display:none; }
+      .hero { padding:100px 24px 60px; }
+      .section { padding:60px 24px; }
+      .upcoming-inner { grid-template-columns:1fr; }
+      .upcoming-info { border-right:none;border-bottom:1px solid var(--border);padding:32px 24px; }
+      .upcoming-register { padding:32px 24px; }
+      .stats-row { grid-template-columns:1fr 1fr; }
+      footer { flex-direction:column;gap:14px;text-align:center; }
+    }
+    @media(max-width:700px){
+      .past-photos { grid-template-columns:1fr 1fr;grid-template-rows:auto; }
+      .past-photos .ph:first-child { grid-row:auto; }
+      .past-photos .ph { height:140px; }
+      .past-stats { grid-template-columns:1fr 1fr; }
+    }
+
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <div style="display:flex;flex-direction:column;align-items:center;">
+    <div class="preloader-orbit-wrap">
+      <div class="preloader-orbit-ring">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="orbitPath" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"/>
+          </defs>
+          <text>
+            <textPath href="#orbitPath" startOffset="0%">✦ SUNDARBANS HOUSE · IIT MADRAS BS · EXCELLENCE · </textPath>
+          </text>
+        </svg>
+      </div>
+      <div class="preloader-logo-center">
+        <img src="../../assets/LOGO.JPEG" alt="S" class="preloader-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="preloader-logo-letter" style="display:none">S</span>
+      </div>
+    </div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+    <div class="preloader-text">Loading Sundarbans...</div>
+  </div>
+</div>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div class="noise"></div>
+<div class="ambient"></div>
+<canvas id="particles"></canvas>
+
+<nav id="navbar">
+  <a href="../../index.html" class="nav-brand">
+    <div class="nav-logo-wrap">
+      <img src="../../assets/LOGO.JPEG" alt="S" onerror="this.style.display='none'">
+    </div>
+    <div>
+      <div class="nav-brand-name">SUNDARBANS</div>
+      <div class="nav-brand-sub">IIT Madras BS</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="../../study.html">Study Corner</a>
+    <a href="../../events.html">Events</a>
+    <a href="../../gallery.html">Gallery</a>
+    <a href="../../meetups.html" class="active">Meetups</a>
+    <a href="../../about.html">About</a>
+    <a href="../../community.html">Community</a>
+  </div>
+  <a href="../../sundarbans/login.html" class="nav-cta">
+    Members Lounge
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      IIT Madras BS · Chennai Chapter
+    </div>
+    <h1 class="hero-title">Chennai<br><span class="accent">Meetups</span></h1>
+    <p class="hero-desc">Close to the home of IIT Madras itself — Chennai students share a special connection with the programme. Join the chapter leading from the front.</p>
+    <div class="hero-actions">
+      <a href="#upcoming" class="btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        View Upcoming Meetup
+      </a>
+      <a href="../../meetups.html" class="btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        All Regions
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="stats-row reveal">
+      <div class="stat-cell">
+        <span class="stat-num" id="s1">0</span>
+        <span class="stat-lbl">Total Meetups Hosted</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num" id="s2">0</span>
+        <span class="stat-lbl">Cities &amp; Locations</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num" id="s3">0<span style="font-size:.55em;font-weight:700">+</span></span>
+        <span class="stat-lbl">Members Connected</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING -->
+<section class="section" id="upcoming">
+  <div class="container">
+    <span class="sec-eyebrow reveal">Next Event</span>
+    <h2 class="sec-title reveal rd1">Upcoming Meetup</h2>
+    <div class="sec-rule reveal rd2"></div>
+    <div class="upcoming-card"><div class="upcoming-inner"><div class="upcoming-info"><p style="color:var(--white-dim)">Details coming soon.</p></div></div></div>
+  </div>
+</section>
+
+<!-- PAST MEETUPS -->
+<section class="section" style="padding-top:20px">
+  <div class="container">
+    <span class="sec-eyebrow reveal">Archive</span>
+    <h2 class="sec-title reveal rd1">Past Meetups</h2>
+    <div class="sec-rule reveal rd2"></div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="past-card">
+
+          <div class="past-card-head">
+            <div class="past-card-top">
+              <span class="tl-badge">November 2025</span>
+              <a href="https://instagram.com/p/che1" target="_blank" class="past-insta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                View Post
+              </a>
+            </div>
+            <h3 class="tl-title">Anna Nagar Meetup</h3>
+            <div class="past-meta-row">
+              <div class="past-chip">📅 16 Nov 2025</div>
+              <div class="past-chip">📍 Anna Nagar, Chennai</div>
+              <div class="past-chip">⏱️ 3 hrs</div>
+              
+            </div>
+          </div>
+
+          <div class="past-about">
+            <span class="past-about-label">About this Meetup</span>
+            <p>Anna Nagar's upscale community vibe matched the level of ambition in the room. Students from engineering, arts, and science backgrounds debated course paths and career trajectories over filter coffee.</p>
+          </div>
+
+          <div class="past-stats">
+            <div class="past-stat">
+              <span class="past-stat-num">44</span>
+              <span class="past-stat-lbl">Attended</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">55</span>
+              <span class="past-stat-lbl">Photos Taken</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">⭐</span>
+              <span class="past-stat-lbl">Community Event</span>
+            </div>
+          </div>
+
+          <div class="past-photos">
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+          </div>
+
+          <div class="past-card-footer">
+            <div class="past-footer-tags"><span class="past-ftag">Anna Nagar</span><span class="past-ftag">Chennai</span><span class="past-ftag">Nov 2025</span></div>
+            <a href="https://instagram.com/p/che1" target="_blank" class="past-view-more">
+              View on Instagram →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="past-card">
+
+          <div class="past-card-head">
+            <div class="past-card-top">
+              <span class="tl-badge">September 2025</span>
+              <a href="https://instagram.com/p/che2" target="_blank" class="past-insta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                View Post
+              </a>
+            </div>
+            <h3 class="tl-title">Velachery Meetup</h3>
+            <div class="past-meta-row">
+              <div class="past-chip">📅 07 Sep 2025</div>
+              <div class="past-chip">📍 Velachery, Chennai</div>
+              <div class="past-chip">⏱️ 3 hrs</div>
+              
+            </div>
+          </div>
+
+          <div class="past-about">
+            <span class="past-about-label">About this Meetup</span>
+            <p>Velachery — home to Taramani's IT corridor — was the perfect spot for a tech-forward meetup. Students explored data science tracks, coding projects, and how to leverage the IITM network in Chennai's job market.</p>
+          </div>
+
+          <div class="past-stats">
+            <div class="past-stat">
+              <span class="past-stat-num">37</span>
+              <span class="past-stat-lbl">Attended</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">46</span>
+              <span class="past-stat-lbl">Photos Taken</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">⭐</span>
+              <span class="past-stat-lbl">Community Event</span>
+            </div>
+          </div>
+
+          <div class="past-photos">
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+          </div>
+
+          <div class="past-card-footer">
+            <div class="past-footer-tags"><span class="past-ftag">Velachery</span><span class="past-ftag">Chennai</span><span class="past-ftag">Sep 2025</span></div>
+            <a href="https://instagram.com/p/che2" target="_blank" class="past-view-more">
+              View on Instagram →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="past-card">
+
+          <div class="past-card-head">
+            <div class="past-card-top">
+              <span class="tl-badge">June 2025</span>
+              <a href="https://instagram.com/p/che3" target="_blank" class="past-insta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                View Post
+              </a>
+            </div>
+            <h3 class="tl-title">Adyar Meetup</h3>
+            <div class="past-meta-row">
+              <div class="past-chip">📅 22 Jun 2025</div>
+              <div class="past-chip">📍 Adyar, Chennai</div>
+              <div class="past-chip">⏱️ 2.5 hrs</div>
+              
+            </div>
+          </div>
+
+          <div class="past-about">
+            <span class="past-about-label">About this Meetup</span>
+            <p>Adyar's intellectual pedigree made for a meetup full of ideas. Near the Adyar River, students discussed interdisciplinary studies, research interests, and how IIT Madras's reputation opens doors even for online graduates.</p>
+          </div>
+
+          <div class="past-stats">
+            <div class="past-stat">
+              <span class="past-stat-num">32</span>
+              <span class="past-stat-lbl">Attended</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">41</span>
+              <span class="past-stat-lbl">Photos Taken</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">⭐</span>
+              <span class="past-stat-lbl">Community Event</span>
+            </div>
+          </div>
+
+          <div class="past-photos">
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+          </div>
+
+          <div class="past-card-footer">
+            <div class="past-footer-tags"><span class="past-ftag">Adyar</span><span class="past-ftag">Chennai</span><span class="past-ftag">Jun 2025</span></div>
+            <a href="https://instagram.com/p/che3" target="_blank" class="past-view-more">
+              View on Instagram →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="past-card">
+
+          <div class="past-card-head">
+            <div class="past-card-top">
+              <span class="tl-badge">March 2025</span>
+              <a href="https://instagram.com/p/che4" target="_blank" class="past-insta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                View Post
+              </a>
+            </div>
+            <h3 class="tl-title">Porur Meetup</h3>
+            <div class="past-meta-row">
+              <div class="past-chip">📅 09 Mar 2025</div>
+              <div class="past-chip">📍 Porur, Chennai</div>
+              <div class="past-chip">⏱️ 2.5 hrs</div>
+              
+            </div>
+          </div>
+
+          <div class="past-about">
+            <span class="past-about-label">About this Meetup</span>
+            <p>Porur's west Chennai students were eager and organised — they came with questions, left with answers and new friends. One of our most productive academic-focused gatherings.</p>
+          </div>
+
+          <div class="past-stats">
+            <div class="past-stat">
+              <span class="past-stat-num">26</span>
+              <span class="past-stat-lbl">Attended</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">32</span>
+              <span class="past-stat-lbl">Photos Taken</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">⭐</span>
+              <span class="past-stat-lbl">Community Event</span>
+            </div>
+          </div>
+
+          <div class="past-photos">
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+          </div>
+
+          <div class="past-card-footer">
+            <div class="past-footer-tags"><span class="past-ftag">Porur</span><span class="past-ftag">Chennai</span><span class="past-ftag">Mar 2025</span></div>
+            <a href="https://instagram.com/p/che4" target="_blank" class="past-view-more">
+              View on Instagram →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="past-card">
+
+          <div class="past-card-head">
+            <div class="past-card-top">
+              <span class="tl-badge">December 2024</span>
+              <a href="https://instagram.com/p/che5" target="_blank" class="past-insta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                View Post
+              </a>
+            </div>
+            <h3 class="tl-title">Tambaram Meetup</h3>
+            <div class="past-meta-row">
+              <div class="past-chip">📅 15 Dec 2024</div>
+              <div class="past-chip">📍 Tambaram, Chennai</div>
+              <div class="past-chip">⏱️ 2 hrs</div>
+              
+            </div>
+          </div>
+
+          <div class="past-about">
+            <span class="past-about-label">About this Meetup</span>
+            <p>South Chennai's Tambaram community hosted a year-end meetup full of reflection and resolution. Students celebrated 2024 wins and set ambitious 2025 targets for their IITM BS journey.</p>
+          </div>
+
+          <div class="past-stats">
+            <div class="past-stat">
+              <span class="past-stat-num">21</span>
+              <span class="past-stat-lbl">Attended</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">26</span>
+              <span class="past-stat-lbl">Photos Taken</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">⭐</span>
+              <span class="past-stat-lbl">Community Event</span>
+            </div>
+          </div>
+
+          <div class="past-photos">
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+          </div>
+
+          <div class="past-card-footer">
+            <div class="past-footer-tags"><span class="past-ftag">Tambaram</span><span class="past-ftag">Chennai</span><span class="past-ftag">Dec 2024</span></div>
+            <a href="https://instagram.com/p/che5" target="_blank" class="past-view-more">
+              View on Instagram →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="past-card">
+
+          <div class="past-card-head">
+            <div class="past-card-top">
+              <span class="tl-badge">September 2024</span>
+              <a href="https://instagram.com/p/che6" target="_blank" class="past-insta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                View Post
+              </a>
+            </div>
+            <h3 class="tl-title">OMR Meetup</h3>
+            <div class="past-meta-row">
+              <div class="past-chip">📅 29 Sep 2024</div>
+              <div class="past-chip">📍 OMR, Chennai</div>
+              <div class="past-chip">⏱️ 2 hrs</div>
+              
+            </div>
+          </div>
+
+          <div class="past-about">
+            <span class="past-about-label">About this Meetup</span>
+            <p>The IT Highway (OMR) hosted a meetup that bridged students and working professionals. Those who had completed the programme shared how it transformed their careers — inspiring the room.</p>
+          </div>
+
+          <div class="past-stats">
+            <div class="past-stat">
+              <span class="past-stat-num">18</span>
+              <span class="past-stat-lbl">Attended</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">22</span>
+              <span class="past-stat-lbl">Photos Taken</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">⭐</span>
+              <span class="past-stat-lbl">Community Event</span>
+            </div>
+          </div>
+
+          <div class="past-photos">
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+          </div>
+
+          <div class="past-card-footer">
+            <div class="past-footer-tags"><span class="past-ftag">OMR</span><span class="past-ftag">Chennai</span><span class="past-ftag">Sep 2024</span></div>
+            <a href="https://instagram.com/p/che6" target="_blank" class="past-view-more">
+              View on Instagram →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="past-card">
+
+          <div class="past-card-head">
+            <div class="past-card-top">
+              <span class="tl-badge">June 2024</span>
+              <a href="https://instagram.com/p/che7" target="_blank" class="past-insta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                View Post
+              </a>
+            </div>
+            <h3 class="tl-title">Perambur Meetup</h3>
+            <div class="past-meta-row">
+              <div class="past-chip">📅 16 Jun 2024</div>
+              <div class="past-chip">📍 Perambur, Chennai</div>
+              <div class="past-chip">⏱️ 2 hrs</div>
+              
+            </div>
+          </div>
+
+          <div class="past-about">
+            <span class="past-about-label">About this Meetup</span>
+            <p>A quiet neighbourhood, a loud ambition. Perambur brought together students who had often felt isolated studying online. They left knowing they had a community in their own city.</p>
+          </div>
+
+          <div class="past-stats">
+            <div class="past-stat">
+              <span class="past-stat-num">14</span>
+              <span class="past-stat-lbl">Attended</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">17</span>
+              <span class="past-stat-lbl">Photos Taken</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">⭐</span>
+              <span class="past-stat-lbl">Community Event</span>
+            </div>
+          </div>
+
+          <div class="past-photos">
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+          </div>
+
+          <div class="past-card-footer">
+            <div class="past-footer-tags"><span class="past-ftag">Perambur</span><span class="past-ftag">Chennai</span><span class="past-ftag">Jun 2024</span></div>
+            <a href="https://instagram.com/p/che7" target="_blank" class="past-view-more">
+              View on Instagram →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="past-card">
+
+          <div class="past-card-head">
+            <div class="past-card-top">
+              <span class="tl-badge">March 2024</span>
+              <a href="https://instagram.com/p/che8" target="_blank" class="past-insta">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                View Post
+              </a>
+            </div>
+            <h3 class="tl-title">Guindy Meetup</h3>
+            <div class="past-meta-row">
+              <div class="past-chip">📅 03 Mar 2024</div>
+              <div class="past-chip">📍 Guindy, Chennai</div>
+              <div class="past-chip">⏱️ 1.5 hrs</div>
+              <span class="past-chip green">🏆 First Meetup</span>
+            </div>
+          </div>
+
+          <div class="past-about">
+            <span class="past-about-label">About this Meetup</span>
+            <p>Steps from IIT Madras's main campus, the Guindy meetup launched the Chennai chapter. Being this close to the campus gave the founding members a tangible connection to the institution behind their degree.</p>
+          </div>
+
+          <div class="past-stats">
+            <div class="past-stat">
+              <span class="past-stat-num">9</span>
+              <span class="past-stat-lbl">Attended</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">11</span>
+              <span class="past-stat-lbl">Photos Taken</span>
+            </div>
+            <div class="past-stat">
+              <span class="past-stat-num">⭐</span>
+              <span class="past-stat-lbl">Community Event</span>
+            </div>
+          </div>
+
+          <div class="past-photos">
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+            <div class="ph"><img src="../assets/bangalore.jpg" alt="" loading="lazy"><div class="ph-ov"></div></div>
+          </div>
+
+          <div class="past-card-footer">
+            <div class="past-footer-tags"><span class="past-ftag">Guindy</span><span class="past-ftag">Chennai</span><span class="past-ftag">Mar 2024</span><span class="past-ftag">First Meetup</span></div>
+            <a href="https://instagram.com/p/che8" target="_blank" class="past-view-more">
+              View on Instagram →
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">
+      <img src="../../assets/LOGO.JPEG" alt="S" onerror="this.style.display='none'">
+    </div>
+    <span class="footer-name">Sundarbans House</span>
+  </div>
+  <span class="footer-right" id="footer-city-label">Chennai Chapter · IIT Madras BS · Est. 2024</span>
+</footer>
+
+<script>
+/* PRELOADER */
+window.addEventListener('load', () => {
+  const fill = document.querySelector('.preloader-fill');
+  if (fill) fill.style.width = '100%';
+  setTimeout(() => {
+    const pl = document.getElementById('preloader');
+    if (pl) { pl.style.opacity = '0'; setTimeout(() => pl.style.display = 'none', 800); }
+  }, 1400);
+});
+
+/* CURSOR */
+const cur=document.getElementById('cur'),curR=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function raf(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(raf);})();
+
+/* NAVBAR */
+const nav=document.getElementById('navbar');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30));
+
+/* PARTICLES — gold */
+const cvs=document.getElementById('particles'),ctx=cvs.getContext('2d');
+let W,H,pts=[];
+function rsz(){W=cvs.width=innerWidth;H=cvs.height=innerHeight;}
+rsz();addEventListener('resize',rsz);
+for(let i=0;i<55;i++)pts.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*.8+.15,vx:(Math.random()-.5)*.12,vy:(Math.random()-.5)*.12,o:Math.random()*.15+.03});
+(function draw(){ctx.clearRect(0,0,W,H);for(const p of pts){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(212,160,23,${p.o})`;ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;}requestAnimationFrame(draw);})();
+
+/* REVEAL */
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal,.tl-item').forEach(el=>obs.observe(el));
+
+/* COUNT-UP */
+function countUp(el,target,dur=1100){
+  if(!el)return;
+  let s=0;const plus=el.innerHTML.includes('em');
+  (function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/dur,1),v=Math.floor((1-Math.pow(1-p,3))*target);
+  plus?el.innerHTML=v+'<span style="font-size:.55em;font-weight:700">+</span>':el.textContent=v;
+  if(p<1)requestAnimationFrame(step);})(0);
+}
+const sObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  countUp(document.getElementById('s1'),8);
+  countUp(document.getElementById('s2'),4);
+  countUp(document.getElementById('s3'),170);
+  sObs.disconnect();}});},{threshold:.4});
+const sr=document.querySelector('.stats-row');
+if(sr)sObs.observe(sr);
+</script>
+</body>
+</html>

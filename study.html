@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Corner | Sundarbans House</title>
+  <link rel="stylesheet" href="style_premium.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-orbit-wrap">
+      <div class="preloader-orbit-ring">
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="orbitPath" d="M 110,110 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"/>
+          </defs>
+          <text>
+            <textPath href="#orbitPath" startOffset="0%">✦ SUNDARBANS HOUSE · IIT MADRAS BS · EXCELLENCE · </textPath>
+          </text>
+        </svg>
+      </div>
+      <div class="preloader-logo-center">
+        <img src="assets/LOGO.JPEG" alt="Sundarbans" class="preloader-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="preloader-logo-letter" style="display:none">S</span>
+      </div>
+    </div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+    <div class="preloader-text">Loading Sundarbans...</div>
+  </div>
+</div>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+<div class="particles-bg" id="particlesBg"></div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <div class="search-input-row">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search pages, resources, events...">
+      <button id="searchClose">✕</button>
+    </div>
+    <div class="search-hint">Press Ctrl+K to open • Esc to close</div>
+    <div id="searchResults"></div>
+  </div>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-left">
+      <div class="nav-logo-wrapper"><img src="assets/LOGO.JPEG" alt="Logo" class="nav-logo"><div class="logo-glow"></div></div>
+      <div class="brand-text"><span class="brand-main">SUNDARBANS</span><span class="brand-sub">IIT Madras BS</span></div>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link"><span>Home</span></a><a href="events.html" class="nav-link"><span>Events</span></a><a href="contact.html" class="nav-link"><span>Contact</span></a>
+      <a href="sundarbans/login.html" class="nav-cta-btn"><span>Members Lounge</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </nav>
+    <div class="nav-tools">
+      <button class="nav-tool-btn" id="searchBtn" aria-label="Search" title="Search (Ctrl+K)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div style="position:relative">
+        <button class="nav-tool-btn" id="notifBtn" aria-label="Notifications">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-badge" id="notifBadge">3</span>
+        </button>
+        <div class="notif-panel" id="notifPanel">
+          <div class="notif-header"><h4>Notifications</h4><button class="notif-markall" onclick="markAllRead()">Mark all read</button></div>
+          <div class="notif-list" id="notifList"></div>
+          <div class="notif-footer"><a href="#">View all notifications</a></div>
+        </div>
+      </div>
+      <button class="nav-tool-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle dark/light mode">
+        <span id="themeIcon">☀️</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1920&q=80&auto=format&fit=crop" alt="Study"><div class="page-hero-overlay"></div></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb-nav"><a href="index.html">Home</a><span>/</span><span>Study Corner</span></div>
+    <h1>Study <span class="tg">Corner</span></h1>
+    <p>Comprehensive academic resources for Foundation, Diploma and BS level students</p>
+  </div>
+</section>
+
+<!-- ===== LEVEL PICKER ===== -->
+<section class="section rs" style="background:var(--bg2)" id="levelPicker">
+  <div class="container">
+    <div class="sec-hdr">
+      <div class="section-tag">Step 1 — Choose Your Level</div>
+      <h2 class="section-title-xl">Study Resources <span class="tg">by Level</span></h2>
+    </div>
+    <div class="grid-3" id="levelCards">
+      <div class="card-base rc sc-level-card" id="lvl-foundation" style="--card-delay:0.1s;cursor:pointer" onclick="scLoadLevel('foundation')">
+        <div style="font-size:2rem;margin-bottom:0.75rem">🌱</div>
+        <h3 style="font-family:Syne,sans-serif;font-weight:700;margin-bottom:0.5rem">Foundation Level</h3>
+        <p class="desc" style="margin-bottom:1.25rem">Maths, English, Computational Thinking, Statistics, Python basics — all starter resources</p>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>Mathematics I &amp; II</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem">8 subjects</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>Statistics I &amp; II</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem">Lectures + Notes + PYQs</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>Python, English, CT</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem">All included</span></div>
+        </div>
+        <span class="submit-btn" style="font-size:0.85rem;padding:0.55rem 1.25rem;pointer-events:none">Browse Subjects →</span>
+      </div>
+      <div class="card-base rc sc-level-card" id="lvl-diploma" style="--card-delay:0.2s;cursor:pointer;border-color:rgba(16,185,129,0.2)" onclick="scLoadLevel('diploma')">
+        <div style="font-size:2rem;margin-bottom:0.75rem">📐</div>
+        <h3 style="font-family:Syne,sans-serif;font-weight:700;margin-bottom:0.5rem">Diploma Level</h3>
+        <p class="desc" style="margin-bottom:1.25rem">DSA, DBMS, Machine Learning, App Development, Java and more</p>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>DSA &amp; DBMS</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem;background:rgba(16,185,129,0.08);color:#10B981;border-color:rgba(16,185,129,0.25)">11 subjects</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>Machine Learning</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem;background:rgba(16,185,129,0.08);color:#10B981;border-color:rgba(16,185,129,0.25)">Lectures + Notes + PYQs</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>MAD I &amp; II, Java</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem;background:rgba(16,185,129,0.08);color:#10B981;border-color:rgba(16,185,129,0.25)">All included</span></div>
+        </div>
+        <span class="submit-btn" style="font-size:0.85rem;padding:0.55rem 1.25rem;background:#10B981;pointer-events:none">Browse Subjects →</span>
+      </div>
+      <div class="card-base rc sc-level-card" id="lvl-bs" style="--card-delay:0.3s;cursor:pointer;border-color:rgba(212,160,23,0.25)" onclick="scLoadLevel('bs')">
+        <div style="font-size:2rem;margin-bottom:0.75rem">🎓</div>
+        <h3 style="font-family:Syne,sans-serif;font-weight:700;margin-bottom:0.5rem">BS Degree Level</h3>
+        <p class="desc" style="margin-bottom:1.25rem">Core courses, electives — Deep Learning, LLMs, NLP, CV, MLOps and more</p>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.25rem">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>Core &amp; Mandatory</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem;background:rgba(212,160,23,0.08);color:#D4A017;border-color:rgba(212,160,23,0.25)">13 subjects</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>AI / ML Electives</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem;background:rgba(212,160,23,0.08);color:#D4A017;border-color:rgba(212,160,23,0.25)">Lectures + Notes + PYQs</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem"><span>LLMs, CV, MLOps…</span><span class="section-tag" style="margin:0;padding:0.15rem 0.5rem;font-size:0.68rem;background:rgba(212,160,23,0.08);color:#D4A017;border-color:rgba(212,160,23,0.25)">All included</span></div>
+        </div>
+        <span class="submit-btn" style="font-size:0.85rem;padding:0.55rem 1.25rem;background:var(--accent);color:#000;pointer-events:none">Browse Subjects →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTERACTIVE STUDY CORNER ===== -->
+<section class="section rs" id="scInteractive" style="display:none">
+  <div class="container">
+
+    <!-- breadcrumb -->
+    <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:2rem;flex-wrap:wrap">
+      <button onclick="scReset()" style="background:none;border:1px solid var(--border);color:var(--text2);padding:0.4rem 1rem;border-radius:99px;font-size:0.8rem;cursor:pointer;font-family:inherit;transition:all 0.2s" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text2)'">← All Levels</button>
+      <span style="color:var(--text3);font-size:0.8rem">/</span>
+      <span id="scBreadcrumb" style="color:var(--accent);font-size:0.8rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase"></span>
+    </div>
+
+    <!-- HORIZONTAL SUBJECT STRIP -->
+    <div style="position:relative;margin-bottom:1.5rem">
+      <div style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);margin-bottom:0.75rem">Subjects</div>
+      <div id="scSubjectList" class="sc-subject-strip"></div>
+      <div class="sc-strip-fade-left"></div>
+      <div class="sc-strip-fade-right"></div>
+    </div>
+
+    <!-- RESOURCE PANEL -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;min-height:420px" id="scPanel">
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:360px;gap:1rem;color:var(--text3)">
+        <div style="font-size:3rem">📖</div>
+        <p style="font-size:0.9rem;letter-spacing:0.05em">Select a subject above to view resources</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== STUDENT TOOLS ===== -->
+<!-- ===== STUDENT TOOLS ===== -->
+<section class="section rs" style="background:var(--bg2)" id="studentTools">
+  <div class="container">
+    <div class="sec-hdr">
+      <div class="section-tag">Student Tools</div>
+      <h2 class="section-title-xl">Handy <span class="tg">tools</span> for studying</h2>
+    </div>
+    <!-- Row 1: Original tools -->
+    <div class="grid-3" style="margin-bottom:1.5rem">
+      <div class="card-base rc" style="--card-delay:0.1s">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem">⏱️</div>
+        <h4 style="font-family:Syne,sans-serif;font-weight:700">Pomodoro Timer</h4>
+        <p class="desc" style="font-size:0.82rem">Study in focused 25-minute blocks</p>
+        <a href="#" style="color:var(--accent);font-size:0.82rem;font-weight:600;text-decoration:none">Use Tool →</a>
+      </div>
+      <div class="card-base rc" style="--card-delay:0.2s">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem">📝</div>
+        <h4 style="font-family:Syne,sans-serif;font-weight:700">Doubt Board</h4>
+        <p class="desc" style="font-size:0.82rem">Post your doubts, get peer answers</p>
+        <a href="#doubtBoard" style="color:var(--accent);font-size:0.82rem;font-weight:600;text-decoration:none">Open Board →</a>
+      </div>
+      <div class="card-base rc" style="--card-delay:0.3s">
+        <div style="font-size:1.5rem;margin-bottom:0.5rem">📅</div>
+        <h4 style="font-family:Syne,sans-serif;font-weight:700">Study Planner</h4>
+        <p class="desc" style="font-size:0.82rem">Plan your week, track your progress</p>
+        <a href="#" style="color:var(--accent);font-size:0.82rem;font-weight:600;text-decoration:none">Plan Now →</a>
+      </div>
+    </div>
+    <!-- Row 2: Academic tools -->
+    <div class="grid-4">
+      <div class="card-base rc" style="--card-delay:0.15s">
+        <div style="font-size:1.5rem;margin-bottom:0.75rem">📊</div>
+        <h4 style="font-family:Syne,sans-serif;font-weight:700;margin-bottom:0.35rem">Looker Studio</h4>
+        <p class="desc" style="font-size:0.82rem;margin-bottom:1rem">Student-specific academic performance analytics</p>
+        <a href="#" target="_blank" style="color:var(--accent);font-size:0.82rem;font-weight:600;text-decoration:none">Open Dashboard →</a>
+      </div>
+      <div class="card-base rc" style="--card-delay:0.25s">
+        <div style="font-size:1.5rem;margin-bottom:0.75rem">🔗</div>
+        <h4 style="font-family:Syne,sans-serif;font-weight:700;margin-bottom:0.35rem">Score Checker</h4>
+        <p class="desc" style="font-size:0.82rem;margin-bottom:1rem">Quick access to results & internal scores</p>
+        <a href="#" target="_blank" style="color:var(--accent);font-size:0.82rem;font-weight:600;text-decoration:none">Check Scores →</a>
+      </div>
+      <div class="card-base rc" style="--card-delay:0.35s">
+        <div style="font-size:1.5rem;margin-bottom:0.75rem">🌱</div>
+        <h4 style="font-family:Syne,sans-serif;font-weight:700;margin-bottom:0.35rem">IITM BS Societies</h4>
+        <p class="desc" style="font-size:0.82rem;margin-bottom:1rem">Explore student clubs & communities</p>
+        <a href="#" target="_blank" style="color:var(--accent);font-size:0.82rem;font-weight:600;text-decoration:none">Explore →</a>
+      </div>
+      <div class="card-base rc" style="--card-delay:0.45s">
+        <div style="font-size:1.5rem;margin-bottom:0.75rem">📘</div>
+        <h4 style="font-family:Syne,sans-serif;font-weight:700;margin-bottom:0.35rem">Student Handbook</h4>
+        <p class="desc" style="font-size:0.82rem;margin-bottom:1rem">Updated rules, policies & academic roadmap</p>
+        <a href="#" target="_blank" style="color:var(--accent);font-size:0.82rem;font-weight:600;text-decoration:none">Read Handbook →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ANONYMOUS DOUBTS BOARD ===== -->
+<section class="section rs" id="doubtBoard">
+  <div class="container">
+    <div class="sec-hdr">
+      <div class="section-tag">Community</div>
+      <h2 class="section-title-xl">Anonymous <span class="tg">Doubts Board</span></h2>
+      <p class="sec-sub">Community-answered doubts. Ask anonymously, learn together.</p>
+    </div>
+
+    <!-- Filter bar -->
+    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem">
+      <button class="db-filter active" onclick="dbFilter('all',this)">All Subjects</button>
+      <button class="db-filter" onclick="dbFilter('Math',this)">Mathematics</button>
+      <button class="db-filter" onclick="dbFilter('Stats',this)">Statistics</button>
+      <button class="db-filter" onclick="dbFilter('Python',this)">Python</button>
+      <button class="db-filter" onclick="dbFilter('DBMS',this)">DBMS</button>
+      <button class="db-filter" onclick="dbFilter('DSA',this)">DSA</button>
+      <button class="db-filter" onclick="dbFilter('ML',this)">Machine Learning</button>
+    </div>
+
+    <!-- Doubts list -->
+    <div id="dbList" style="display:flex;flex-direction:column;gap:1rem;max-width:820px;margin:0 auto 3rem"></div>
+
+    <!-- Submit form -->
+    <div class="card-base" style="max-width:820px;margin:0 auto;padding:2rem">
+      <h3 style="font-family:Syne,sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:1.5rem">Submit Your Doubt</h3>
+      <div style="margin-bottom:1rem">
+        <label style="display:block;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem">Subject</label>
+        <select id="dbSubject" class="db-input">
+          <option value="">Select Subject</option>
+          <option value="Math">Mathematics</option>
+          <option value="Stats">Statistics</option>
+          <option value="Python">Python</option>
+          <option value="DBMS">DBMS</option>
+          <option value="DSA">DSA</option>
+          <option value="ML">Machine Learning</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div style="margin-bottom:1.25rem">
+        <label style="display:block;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:0.5rem">Your Doubt <span style="color:var(--text3);font-style:italic;text-transform:none;letter-spacing:0">(min 10 characters)</span></label>
+        <textarea id="dbQuestion" class="db-input" rows="4" placeholder="Describe your doubt in detail..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="dbSubmit()">Submit Anonymously</button>
+      <p id="dbMsg" style="margin-top:0.75rem;font-size:0.85rem;color:var(--accent);display:none">✓ Your doubt has been submitted!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STUDENT CONTRIBUTION + RESOURCE REQUEST ===== -->
+<section class="section rs" style="background:var(--bg2)">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:stretch" class="sc-contrib-grid">
+
+      <!-- Student Contribution -->
+      <div class="card-base" style="padding:2.5rem;display:flex;flex-direction:column;gap:0;border-color:rgba(212,160,23,0.2)">
+        <div style="font-size:2rem;margin-bottom:1rem">📤</div>
+        <div class="section-tag" style="margin-bottom:1rem;align-self:flex-start">Student Contribution</div>
+        <h3 style="font-family:Syne,sans-serif;font-weight:700;font-size:1.4rem;margin-bottom:0.5rem">Share Your Notes</h3>
+        <p style="color:var(--text2);font-size:0.9rem;margin-bottom:1.25rem"><strong style="color:var(--text)">Purpose:</strong> Community-driven academic content</p>
+        <ul style="list-style:none;padding:0;margin:0 0 1.75rem;display:flex;flex-direction:column;gap:0.6rem">
+          <li style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--text2)"><span style="color:var(--accent);font-size:0.9rem">✦</span> Upload notes & resources</li>
+          <li style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--text2)"><span style="color:var(--accent);font-size:0.9rem">✦</span> Help juniors & peers</li>
+          <li style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--text2)"><span style="color:var(--accent);font-size:0.9rem">✦</span> WebOps review ensures quality</li>
+        </ul>
+        <a href="#" class="submit-btn" style="align-self:flex-start">Submit a Resource</a>
+      </div>
+
+      <!-- Resource Request -->
+      <div class="card-base" style="padding:2.5rem;display:flex;flex-direction:column;gap:0;border-color:rgba(212,160,23,0.2)">
+        <div style="font-size:2rem;margin-bottom:1rem">🎯</div>
+        <div class="section-tag" style="margin-bottom:1rem;align-self:flex-start">Resource Request</div>
+        <h3 style="font-family:Syne,sans-serif;font-weight:700;font-size:1.4rem;margin-bottom:0.5rem">Request a Resource</h3>
+        <p style="color:var(--text2);font-size:0.9rem;margin-bottom:1.25rem"><strong style="color:var(--text)">Purpose:</strong> Identify missing academic needs</p>
+        <ul style="list-style:none;padding:0;margin:0 0 1.75rem;display:flex;flex-direction:column;gap:0.6rem">
+          <li style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--text2)"><span style="color:var(--accent);font-size:0.9rem">✦</span> Request missing topics</li>
+          <li style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--text2)"><span style="color:var(--accent);font-size:0.9rem">✦</span> Exam-focused content</li>
+          <li style="display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;color:var(--text2)"><span style="color:var(--accent);font-size:0.9rem">✦</span> Helps WebOps prioritize</li>
+        </ul>
+        <a href="#" class="submit-btn" style="align-self:flex-start;background:transparent;border:1px solid var(--accent);color:var(--accent)">Request a Resource</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* Doubts board */
+.db-filter { background:none;border:1px solid var(--border);color:var(--text2);padding:0.4rem 1rem;border-radius:99px;font-size:0.8rem;cursor:pointer;font-family:inherit;transition:all 0.2s; }
+.db-filter:hover { border-color:var(--accent);color:var(--accent); }
+.db-filter.active { background:var(--accent);border-color:var(--accent);color:#000;font-weight:700; }
+.db-card { background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;transition:border-color 0.2s; }
+.db-card:hover { border-color:rgba(212,160,23,0.3); }
+.db-tag { display:inline-block;font-size:0.65rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:rgba(212,160,23,0.1);color:var(--accent);border:1px solid rgba(212,160,23,0.25);padding:0.15rem 0.55rem;border-radius:99px;margin-bottom:0.75rem; }
+.db-question { font-size:0.95rem;font-weight:500;color:var(--text);margin-bottom:0.5rem;line-height:1.5; }
+.db-answer { font-size:0.85rem;color:var(--text2);line-height:1.6;margin-bottom:0.75rem;padding-left:0.75rem;border-left:2px solid rgba(212,160,23,0.25); }
+.db-footer { display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--text3); }
+.db-upvote { background:none;border:1px solid var(--border);color:var(--text2);padding:0.25rem 0.65rem;border-radius:99px;cursor:pointer;font-family:inherit;font-size:0.75rem;transition:all 0.2s; }
+.db-upvote:hover { border-color:var(--accent);color:var(--accent); }
+.db-input { width:100%;background:rgba(212,160,23,0.04);border:1px solid var(--border);border-radius:10px;padding:0.75rem 1rem;color:var(--text);font-family:inherit;font-size:0.9rem;transition:border-color 0.2s;box-sizing:border-box; }
+.db-input:focus { outline:none;border-color:var(--accent); }
+.db-input option { background:var(--bg2);color:var(--text); }
+@media(max-width:768px){ .sc-contrib-grid { grid-template-columns:1fr !important; } }
+</style>
+
+<script>
+// ===== DOUBTS BOARD DATA =====
+const dbDoubts = [
+  { subject:'Math', question:'What is the difference between eigenvalues and eigenvectors, and when do we use them?', answer:'Eigenvalues (λ) scale the eigenvector direction. If Av = λv, then v is the eigenvector and λ is the eigenvalue. Used in PCA, stability analysis, and graph theory.', time:'2 days ago', upvotes:24 },
+  { subject:'Python', question:'How does list comprehension differ from a normal for loop in Python?', answer:'List comprehension is more concise and often faster. [x**2 for x in range(10)] vs a for loop with append(). Use comprehension for simple transformations.', time:'1 day ago', upvotes:18 },
+  { subject:'Stats', question:'When should I use t-test vs z-test?', answer:'Use z-test when population std dev is known and n > 30. Use t-test when std dev is unknown or n < 30. For small samples, t-test is almost always the right choice.', time:'3 days ago', upvotes:31 },
+  { subject:'DBMS', question:'What is the difference between 2NF and 3NF normalization?', answer:'2NF removes partial dependencies (non-key attributes depending on part of a composite key). 3NF removes transitive dependencies (non-key attributes depending on other non-key attributes).', time:'5 days ago', upvotes:15 },
+  { subject:'DSA', question:'When should I use BFS vs DFS for graph traversal?', answer:'BFS is best for finding shortest paths in unweighted graphs. DFS is better for topological sorting, cycle detection, and pathfinding in mazes. BFS uses a queue, DFS uses a stack.', time:'4 days ago', upvotes:27 },
+  { subject:'ML', question:'What is the bias-variance tradeoff and how do I manage it?', answer:'High bias = underfitting (model too simple). High variance = overfitting (model too complex). Use regularization, cross-validation, and more data to balance the tradeoff.', time:'6 days ago', upvotes:42 },
+];
+
+let dbCurrentFilter = 'all';
+let dbVotes = {};
+
+function dbRender(filter) {
+  const list = document.getElementById('dbList');
+  if (!list) return;
+  const filtered = filter === 'all' ? dbDoubts : dbDoubts.filter(d => d.subject === filter);
+  list.innerHTML = '';
+  if (!filtered.length) {
+    list.innerHTML = '<p style="text-align:center;color:var(--text3);padding:2rem">No doubts in this subject yet.</p>';
+    return;
+  }
+  filtered.forEach((d, i) => {
+    const idx = dbDoubts.indexOf(d);
+    const votes = (dbVotes[idx] || 0) + d.upvotes;
+    const div = document.createElement('div');
+    div.className = 'db-card rc';
+    div.innerHTML = `
+      <span class="db-tag">${d.subject}</span>
+      <div class="db-question">${d.question}</div>
+      ${d.answer ? `<div class="db-answer">${d.answer}</div>` : ''}
+      <div class="db-footer">
+        <span>${d.time}</span>
+        <button class="db-upvote" onclick="dbUpvote(${idx},this)">👍 ${votes}</button>
+      </div>`;
+    list.appendChild(div);
+  });
+}
+
+function dbFilter(subject, btn) {
+  dbCurrentFilter = subject;
+  document.querySelectorAll('.db-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  dbRender(subject);
+}
+
+function dbUpvote(i, btn) {
+  dbVotes[i] = (dbVotes[i] || 0) + 1;
+  const base = dbDoubts[i].upvotes;
+  btn.textContent = '👍 ' + (base + dbVotes[i]);
+  btn.style.borderColor = 'var(--accent)';
+  btn.style.color = 'var(--accent)';
+  btn.disabled = true;
+}
+
+function dbSubmit() {
+  const sub = document.getElementById('dbSubject').value;
+  const q = document.getElementById('dbQuestion').value.trim();
+  const msg = document.getElementById('dbMsg');
+  if (!sub || q.length < 10) { msg.style.color='#e74c3c'; msg.textContent='⚠ Please select a subject and write at least 10 characters.'; msg.style.display='block'; return; }
+  dbDoubts.unshift({ subject:sub, question:q, answer:'', time:'Just now', upvotes:0 });
+  dbRender(dbCurrentFilter);
+  document.getElementById('dbSubject').value = '';
+  document.getElementById('dbQuestion').value = '';
+  msg.style.color = 'var(--accent)';
+  msg.textContent = '✓ Your doubt has been submitted!';
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+// Init doubts on load
+document.addEventListener('DOMContentLoaded', () => dbRender('all'));
+</script>
+
+<style>
+.sc-level-card:hover { transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,0,0,0.4); }
+.sc-level-card.active { border-color:var(--accent) !important; box-shadow:0 0 0 2px rgba(212,160,23,0.25),0 24px 60px rgba(0,0,0,0.4); }
+
+/* Horizontal subject strip */
+.sc-subject-strip {
+  display:flex;
+  gap:0.65rem;
+  overflow-x:auto;
+  padding-bottom:0.5rem;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+  scroll-behavior:smooth;
+}
+.sc-subject-strip::-webkit-scrollbar { display:none; }
+.sc-strip-fade-left, .sc-strip-fade-right {
+  position:absolute;top:1.5rem;bottom:0;width:48px;pointer-events:none;z-index:2;
+}
+.sc-strip-fade-left { left:0; background:linear-gradient(to right, var(--bg), transparent); }
+.sc-strip-fade-right { right:0; background:linear-gradient(to left, var(--bg), transparent); }
+
+/* Subject pill buttons */
+.sc-subj-btn {
+  flex-shrink:0;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:0.65rem 1rem;
+  cursor:pointer;
+  font-family:inherit;
+  transition:all 0.2s;
+  color:var(--text2);
+  font-size:0.82rem;
+  text-align:left;
+  min-width:160px;
+  max-width:220px;
+  white-space:normal;
+}
+.sc-subj-btn:hover { background:rgba(212,160,23,0.07);border-color:rgba(212,160,23,0.3);color:var(--text); transform:translateY(-2px); }
+.sc-subj-btn.active { background:rgba(212,160,23,0.12);border-color:var(--accent);color:var(--accent);font-weight:600; box-shadow:0 0 0 1px rgba(212,160,23,0.2); }
+.sc-subj-name { display:block; font-size:0.85rem; font-weight:500; margin-bottom:0.2rem; line-height:1.3; }
+.sc-subj-code { display:block;font-size:0.68rem;color:var(--text3);letter-spacing:0.04em; }
+.sc-subj-btn.active .sc-subj-code { color:rgba(212,160,23,0.6); }
+
+/* Tabs & resources */
+.sc-tab-bar { display:flex;gap:0.5rem;margin:1.5rem 0 1.25rem;flex-wrap:wrap; }
+.sc-tab { background:none;border:1px solid var(--border);color:var(--text2);padding:0.45rem 1.1rem;border-radius:99px;font-size:0.82rem;cursor:pointer;font-family:inherit;transition:all 0.2s; }
+.sc-tab:hover { border-color:var(--accent);color:var(--accent); }
+.sc-tab.active { background:var(--accent);border-color:var(--accent);color:#000;font-weight:700; }
+.sc-resource-item { display:flex;align-items:center;justify-content:space-between;padding:0.85rem 1rem;background:rgba(212,160,23,0.03);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);font-size:0.9rem;transition:all 0.2s;margin-bottom:0.5rem; }
+.sc-resource-item:hover { background:rgba(212,160,23,0.08);border-color:rgba(212,160,23,0.3);transform:translateX(4px); }
+.sc-badge { font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(212,160,23,0.15);color:var(--accent);border:1px solid rgba(212,160,23,0.3);padding:0.15rem 0.55rem;border-radius:99px; }
+.sc-empty { display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem;color:var(--text3);gap:0.75rem; }
+</style>
+
+<script>
+const scData = {
+  foundation: [
+    { subject:"Mathematics for Data Science I", code:"BSMA1001", description:"Calculus, Linear Algebra, Probability", resources:{ lectures:[{title:"Linear Algebra Basics",link:"#",badge:"Popular"},{title:"Calculus Fundamentals",link:"#"},{title:"Introduction to Probability",link:"#"}], notes:[{title:"Week 1–4 Notes",link:"#"},{title:"Formula Sheet",link:"#",badge:"Popular"}], pyq:[{title:"Quiz 1 PYQ 2023",link:"#"},{title:"End Term 2023",link:"#"}] } },
+    { subject:"Statistics for Data Science I", code:"BSMA1002", description:"Descriptive stats, distributions", resources:{ lectures:[{title:"Descriptive Statistics",link:"#",badge:"Popular"},{title:"Probability Distributions",link:"#"}], notes:[{title:"Stats Week 1–4 Notes",link:"#"}], pyq:[{title:"Quiz 1 PYQ 2023",link:"#"},{title:"End Term 2022",link:"#"}] } },
+    { subject:"Computational Thinking", code:"BSCS1001", description:"Algorithms, problem-solving", resources:{ lectures:[{title:"Introduction to Algorithms",link:"#"},{title:"Flowcharts & Pseudocode",link:"#",badge:"Popular"}], notes:[{title:"CT Complete Notes",link:"#"}], pyq:[{title:"CT Quiz PYQ 2023",link:"#"}] } },
+    { subject:"English I", code:"BSHS1001", description:"Grammar, reading comprehension", resources:{ lectures:[{title:"Grammar & Composition",link:"#"},{title:"Reading Comprehension",link:"#"}], notes:[{title:"English I Notes",link:"#"}], pyq:[{title:"English I PYQ",link:"#"}] } },
+    { subject:"Mathematics for Data Science II", code:"BSMA1003", description:"Advanced calculus, linear algebra", resources:{ lectures:[{title:"Linear Algebra Advanced",link:"#",badge:"Popular"},{title:"Multivariable Calculus",link:"#"}], notes:[{title:"MDS II Notes",link:"#"}], pyq:[{title:"MDS II PYQ 2023",link:"#"}] } },
+    { subject:"Statistics for Data Science II", code:"BSMA1004", description:"Hypothesis testing, regression", resources:{ lectures:[{title:"Hypothesis Testing",link:"#",badge:"Popular"},{title:"Regression Analysis",link:"#"}], notes:[{title:"Stats II Complete Notes",link:"#"}], pyq:[{title:"Stats II PYQ",link:"#"}] } },
+    { subject:"Programming in Python", code:"BSCS1002", description:"Python basics, OOP, data structures", resources:{ lectures:[{title:"Python Basics",link:"#",badge:"Popular"},{title:"Functions & OOP",link:"#"},{title:"Data Structures in Python",link:"#"}], notes:[{title:"Python Cheat Sheet",link:"#",badge:"Popular"},{title:"Week-wise Notes",link:"#"}], pyq:[{title:"Python Quiz PYQ",link:"#"},{title:"Python End Term",link:"#"}] } },
+    { subject:"English II", code:"BSHS1002", description:"Advanced writing, technical communication", resources:{ lectures:[{title:"Advanced Writing Skills",link:"#"},{title:"Technical Communication",link:"#"}], notes:[{title:"English II Notes",link:"#"}], pyq:[{title:"English II PYQ",link:"#"}] } }
+  ],
+  diploma: [
+    { subject:"Database Management Systems", code:"BSCS2001", description:"ER model, SQL, normalization", resources:{ lectures:[{title:"ER Model & Relational Algebra",link:"#",badge:"Popular"},{title:"SQL Queries",link:"#"},{title:"Normalization",link:"#"}], notes:[{title:"DBMS Complete Notes",link:"#",badge:"Popular"},{title:"SQL Cheat Sheet",link:"#"}], pyq:[{title:"DBMS Quiz PYQ",link:"#"},{title:"DBMS End Term",link:"#"}] } },
+    { subject:"Programming, DSA using Python", code:"BSCS2002", description:"Data structures & algorithms", resources:{ lectures:[{title:"Arrays & Linked Lists",link:"#",badge:"Popular"},{title:"Trees & Graphs",link:"#"},{title:"Sorting & Searching Algorithms",link:"#"}], notes:[{title:"PDSA Notes",link:"#"},{title:"Algorithm Complexity Guide",link:"#",badge:"Popular"}], pyq:[{title:"PDSA PYQ 2023",link:"#"}] } },
+    { subject:"Modern Application Development I", code:"BSCS2003", description:"HTML, JS, Flask, REST APIs", resources:{ lectures:[{title:"HTML, CSS Basics",link:"#"},{title:"JavaScript Fundamentals",link:"#",badge:"Popular"},{title:"Flask & REST APIs",link:"#"}], notes:[{title:"MAD I Notes",link:"#"}], pyq:[{title:"MAD I Quiz PYQ",link:"#"}] } },
+    { subject:"Programming Concepts using Java", code:"BSCS2005", description:"OOP, exceptions, collections", resources:{ lectures:[{title:"Java OOP Concepts",link:"#",badge:"Popular"},{title:"Exception Handling",link:"#"},{title:"Collections & Generics",link:"#"}], notes:[{title:"Java Complete Notes",link:"#"}], pyq:[{title:"Java PYQ",link:"#"}] } },
+    { subject:"Modern Application Development II", code:"BSCS2006", description:"Vue.js / React, advanced APIs", resources:{ lectures:[{title:"Vue.js / React Basics",link:"#",badge:"Popular"},{title:"Advanced REST & Authentication",link:"#"}], notes:[{title:"MAD II Notes",link:"#"}], pyq:[{title:"MAD II PYQ",link:"#"}] } },
+    { subject:"Machine Learning Foundations", code:"BSCS2004", description:"Supervised & unsupervised learning", resources:{ lectures:[{title:"Supervised Learning",link:"#",badge:"Popular"},{title:"Unsupervised Learning",link:"#"},{title:"Model Evaluation",link:"#"}], notes:[{title:"MLF Notes",link:"#"},{title:"ML Algorithm Summary",link:"#",badge:"Popular"}], pyq:[{title:"MLF PYQ 2023",link:"#"}] } },
+    { subject:"Business Data Management", code:"BSMS2001", description:"Business data, visualization", resources:{ lectures:[{title:"Business Data Concepts",link:"#"},{title:"Data Visualization",link:"#",badge:"Popular"}], notes:[{title:"BDM Notes",link:"#"}], pyq:[{title:"BDM PYQ",link:"#"}] } },
+    { subject:"Machine Learning Techniques", code:"BSCS2007", description:"Advanced ML, neural nets intro", resources:{ lectures:[{title:"Advanced Classification",link:"#"},{title:"Neural Networks Intro",link:"#",badge:"Popular"}], notes:[{title:"MLT Notes",link:"#"}], pyq:[{title:"MLT PYQ",link:"#"}] } },
+    { subject:"Machine Learning Practice", code:"BSCS2008", description:"End-to-end ML pipelines", resources:{ lectures:[{title:"Kaggle Projects Walkthrough",link:"#",badge:"Popular"},{title:"End-to-End ML Pipeline",link:"#"}], notes:[{title:"MLP Notes",link:"#"}], pyq:[{title:"MLP PYQ",link:"#"}] } },
+    { subject:"System Commands", code:"BSSE2001", description:"Linux, shell scripting", resources:{ lectures:[{title:"Linux Basics",link:"#",badge:"Popular"},{title:"Shell Scripting",link:"#"}], notes:[{title:"System Commands Notes",link:"#"}], pyq:[{title:"SC PYQ",link:"#"}] } },
+    { subject:"Tools in Data Science", code:"BSSE2002", description:"Pandas, NumPy, Matplotlib", resources:{ lectures:[{title:"Pandas & NumPy",link:"#",badge:"Popular"},{title:"Matplotlib & Seaborn",link:"#"}], notes:[{title:"TDS Notes",link:"#"}], pyq:[{title:"TDS PYQ",link:"#"}] } }
+  ],
+  bs: [
+    { subject:"Software Engineering", code:"BSCS3001", description:"Core — SDLC, design patterns", resources:{ lectures:[{title:"SDLC & Agile",link:"#",badge:"Popular"},{title:"Design Patterns",link:"#"},{title:"Software Architecture",link:"#"}], notes:[{title:"SE Complete Notes",link:"#"}], pyq:[{title:"SE PYQ 2023",link:"#"}] } },
+    { subject:"Software Testing", code:"BSCS3002", description:"Core — unit & automation testing", resources:{ lectures:[{title:"Unit & Integration Testing",link:"#",badge:"Popular"},{title:"Test Automation",link:"#"}], notes:[{title:"Software Testing Notes",link:"#"}], pyq:[{title:"ST PYQ",link:"#"}] } },
+    { subject:"AI: Search Methods for Problem Solving", code:"BSCS3003", description:"Core — BFS, DFS, A*", resources:{ lectures:[{title:"BFS, DFS, A*",link:"#",badge:"Popular"},{title:"Heuristic Search",link:"#"}], notes:[{title:"AI Search Notes",link:"#"}], pyq:[{title:"AI Search PYQ",link:"#"}] } },
+    { subject:"Deep Learning", code:"BSCS3004", description:"Core — CNN, RNN, Transformers", resources:{ lectures:[{title:"CNN & RNN",link:"#",badge:"Popular"},{title:"Transformers & Attention",link:"#"},{title:"Transfer Learning",link:"#"}], notes:[{title:"Deep Learning Notes",link:"#"}], pyq:[{title:"DL PYQ",link:"#"}] } },
+    { subject:"Strategies for Professional Growth", code:"BSGN3001", description:"Mandatory — communication, career", resources:{ lectures:[{title:"Communication Skills",link:"#"},{title:"Career Planning",link:"#",badge:"Popular"}], notes:[{title:"SPG Notes",link:"#"}], pyq:[{title:"SPG PYQ",link:"#"}] } },
+    { subject:"Large Language Models", code:"BSDA5004", description:"Elective — transformers, fine-tuning", resources:{ lectures:[{title:"Transformer Architecture",link:"#",badge:"Popular"},{title:"Fine-tuning LLMs",link:"#"},{title:"Prompt Engineering",link:"#"}], notes:[{title:"LLM Notes",link:"#"}], pyq:[{title:"LLM PYQ",link:"#"}] } },
+    { subject:"Introduction to NLP (i-NLP)", code:"BSDA5005", description:"Elective — tokenization, sentiment", resources:{ lectures:[{title:"Tokenization & Embeddings",link:"#"},{title:"Sentiment Analysis",link:"#",badge:"Popular"}], notes:[{title:"NLP Notes",link:"#"}], pyq:[{title:"NLP PYQ",link:"#"}] } },
+    { subject:"Deep Learning for Computer Vision", code:"BSDA5006", description:"Elective — object detection, segmentation", resources:{ lectures:[{title:"Object Detection (YOLO)",link:"#",badge:"Popular"},{title:"Image Segmentation",link:"#"}], notes:[{title:"CV Notes",link:"#"}], pyq:[{title:"CV PYQ",link:"#"}] } },
+    { subject:"Mathematical Foundations of Generative AI", code:"BSDA5002", description:"Elective — VAEs, GANs, diffusion", resources:{ lectures:[{title:"VAEs & GANs",link:"#",badge:"Popular"},{title:"Diffusion Models",link:"#"}], notes:[{title:"GenAI Math Notes",link:"#"}], pyq:[{title:"GenAI PYQ",link:"#"}] } },
+    { subject:"Operating Systems", code:"BSCS4022", description:"Elective — process management, memory", resources:{ lectures:[{title:"Process Management",link:"#",badge:"Popular"},{title:"Memory & File Systems",link:"#"}], notes:[{title:"OS Notes",link:"#"}], pyq:[{title:"OS PYQ",link:"#"}] } },
+    { subject:"Computer Networks", code:"BSCS4024", description:"Elective — TCP/IP, network security", resources:{ lectures:[{title:"TCP/IP & OSI Model",link:"#",badge:"Popular"},{title:"Network Security",link:"#"}], notes:[{title:"CN Notes",link:"#"}], pyq:[{title:"CN PYQ",link:"#"}] } },
+    { subject:"Machine Learning Operations (MLOps)", code:"BSDA5014", description:"Elective — CI/CD for ML, monitoring", resources:{ lectures:[{title:"CI/CD for ML",link:"#",badge:"Popular"},{title:"Model Monitoring",link:"#"}], notes:[{title:"MLOps Notes",link:"#"}], pyq:[{title:"MLOps PYQ",link:"#"}] } },
+    { subject:"Algorithmic Thinking in Bioinformatics", code:"BSBT4001", description:"Elective — sequence alignment, phylogenetics", resources:{ lectures:[{title:"Sequence Alignment",link:"#"},{title:"Phylogenetics",link:"#"}], notes:[{title:"Bioinformatics Notes",link:"#"}], pyq:[{title:"Bioinformatics PYQ",link:"#"}] } }
+  ]
+};
+
+let scCurrentSubject = null;
+let scCurrentLevel = null;
+
+function scLoadLevel(level) {
+  scCurrentLevel = level;
+  scCurrentSubject = null;
+
+  // Show interactive section
+  document.getElementById('scInteractive').style.display = 'block';
+  document.getElementById('scInteractive').scrollIntoView({ behavior:'smooth', block:'start' });
+
+  // Breadcrumb
+  const names = { foundation:'🌱 Foundation Level', diploma:'📐 Diploma Level', bs:'🎓 BS Degree Level' };
+  document.getElementById('scBreadcrumb').textContent = names[level];
+
+  // Highlight level card
+  document.querySelectorAll('.sc-level-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('lvl-' + level)?.classList.add('active');
+
+  // Build horizontal subject pill buttons
+  const strip = document.getElementById('scSubjectList');
+  strip.innerHTML = '';
+  scData[level].forEach((sub) => {
+    const btn = document.createElement('button');
+    btn.className = 'sc-subj-btn';
+    btn.innerHTML = `<span class="sc-subj-name">${sub.subject}</span><span class="sc-subj-code">${sub.code}</span>`;
+    btn.onclick = () => {
+      strip.querySelectorAll('.sc-subj-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      // Scroll pill into view within the strip
+      btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+      scCurrentSubject = sub;
+      scShowResources('lectures');
+    };
+    strip.appendChild(btn);
+  });
+
+  // Reset panel
+  document.getElementById('scPanel').innerHTML = `<div class="sc-empty"><div style="font-size:2.5rem">☝️</div><p style="font-size:0.88rem">Pick a subject from the row above</p></div>`;
+}
+
+function scShowResources(type) {
+  if (!scCurrentSubject) return;
+  const sub = scCurrentSubject;
+  const list = sub.resources[type] || [];
+  const panel = document.getElementById('scPanel');
+
+  panel.innerHTML = `
+    <div style="margin-bottom:0.25rem">
+      <div class="section-tag" style="margin-bottom:0.5rem">${scCurrentLevel?.toUpperCase()} LEVEL</div>
+      <h3 style="font-family:Syne,sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:0.25rem">${sub.subject}</h3>
+      <p style="font-size:0.8rem;color:var(--text3);letter-spacing:0.05em">${sub.code} · ${sub.description}</p>
+    </div>
+    <div class="sc-tab-bar">
+      <button class="sc-tab ${type==='lectures'?'active':''}" onclick="scShowResources('lectures')">📺 Lectures</button>
+      <button class="sc-tab ${type==='notes'?'active':''}" onclick="scShowResources('notes')">📝 Notes</button>
+      <button class="sc-tab ${type==='pyq'?'active':''}" onclick="scShowResources('pyq')">📄 PYQs</button>
+    </div>
+    <div>
+      ${list.length
+        ? list.map(r => `
+          <a href="${r.link}" target="_blank" class="sc-resource-item">
+            <span>${r.title}</span>
+            <div style="display:flex;align-items:center;gap:0.75rem">
+              ${r.badge ? `<span class="sc-badge">${r.badge}</span>` : ''}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text3)"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>`).join('')
+        : `<div class="sc-empty"><div style="font-size:2rem">🔜</div><p style="font-size:0.85rem">No resources added yet — check back soon!</p></div>`
+      }
+    </div>
+  `;
+}
+
+function scReset() {
+  document.getElementById('scInteractive').style.display = 'none';
+  document.querySelectorAll('.sc-level-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('levelPicker').scrollIntoView({ behavior:'smooth', block:'start' });
+  scCurrentLevel = null;
+  scCurrentSubject = null;
+}
+</script>
+
+
+
+
+
+<footer class="footer">
+  <div class="footer-wave-top"><svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#050A1A"/></svg></div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="fbrand">
+        <div class="flogo"><img src="assets/LOGO.JPEG" alt="Logo" class="flogo-img"><div><span class="fbrand-name">SUNDARBANS</span><span class="fbrand-sub">IIT Madras BS</span></div></div>
+        <p class="ftagline">Empowering minds, building futures — one student at a time.</p>
+        <div class="fsocial">
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></a>
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M22.46 6c-.85.38-1.78.64-2.75.76a4.8 4.8 0 0 0 2.1-2.66c-.92.55-1.95.95-3.04 1.17a4.77 4.77 0 0 0-8.13 4.35A13.55 13.55 0 0 1 1.64 4.9a4.75 4.75 0 0 0 1.48 6.37 4.74 4.74 0 0 1-2.16-.6v.06c0 2.31 1.65 4.24 3.83 4.68a4.8 4.8 0 0 1-2.15.08 4.78 4.78 0 0 0 4.46 3.31A9.57 9.57 0 0 1 1 20.12 13.5 13.5 0 0 0 8.29 22c8.75 0 13.54-7.25 13.54-13.54 0-.21 0-.41-.01-.61.93-.67 1.74-1.51 2.38-2.47z"/></svg></a>
+        </div>
+      </div>
+      <div class="flinks"><h4>Quick Links</h4><a href="about.html">About Us</a><a href="teams.html">Our Teams</a><a href="events.html">Events</a><a href="contact.html">Contact</a></div>
+      <div class="flinks"><h4>Resources</h4><a href="study.html">Study Corner</a><a href="gallery.html">Gallery</a><a href="meetups.html">Meetups</a><a href="community.html">Communities</a></div>
+      <div class="fnewsletter">
+        <h4>Stay Updated</h4><p>Get the latest from Sundarbans House</p>
+        <div class="nform"><input type="email" placeholder="Your email" class="ninput"><button class="nbtn">→</button></div>
+        <div class="iit-badge"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/80px-IIT_Madras_Logo.svg.png" alt="IIT Madras" class="iit-logo"><span>IIT Madras Affiliated</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Sundarbans House. Student-managed — not an official IIT Madras website.</p><div class="fbl"><a href="#">Privacy</a><span>·</span><a href="#">Terms</a><span>·</span><a href="contact.html">Contact</a></div></div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+
+</body>
+</html>

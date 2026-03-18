@@ -1,0 +1,28 @@
+[
+ {
+  "name": "Samar Ahmad",
+  "role": "Technical Team Member",
+  "team": "Technical",
+  "image": "assets/images/samar.jpg",
+  "linkedin": "#",
+  "instagram": "#",
+  "badges": ["problem-solver", "tech-lead"]
+}
+,
+  {
+    "name": "Liza Rathi",
+    "team": "Graphic",
+    "role": "Graphic Team Head",
+    "image": "assets/images/liza.jpg",
+    "linkedin": "#",
+    "instagram": "#"
+  },
+  {
+    "name": "Aakash Rawal",
+    "team": "Graphic",
+    "role": "Designer",
+    "image": "assets/images/aakash.jpg",
+    "linkedin": "#",
+    "instagram": "#"
+  }
+]

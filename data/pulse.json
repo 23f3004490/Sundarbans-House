@@ -1,0 +1,26 @@
+[
+  {
+    "type": "event",
+    "icon": "🎉",
+    "text": "Chennai Meetup announced",
+    "time": "2 hours ago"
+  },
+  {
+    "type": "member",
+    "icon": "👋",
+    "text": "Samar Ahmad joined the Technical Team",
+    "time": "Today"
+  },
+  {
+    "type": "achievement",
+    "icon": "🏆",
+    "text": "Sundarbans House crossed 500+ members",
+    "time": "Yesterday"
+  },
+  {
+    "type": "gallery",
+    "icon": "🖼️",
+    "text": "Photos uploaded from Bangalore Meetup",
+    "time": "2 days ago"
+  }
+]

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meetups | Sundarbans House</title>
+  <link rel="stylesheet" href="style_premium.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-orbit-wrap">
+      <div class="preloader-orbit-ring">
+        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="orbitPath" d="M 110,110 m -88,0 a 88,88 0 1,1 176,0 a 88,88 0 1,1 -176,0"/>
+          </defs>
+          <text>
+            <textPath href="#orbitPath" startOffset="0%">✦ SUNDARBANS HOUSE · IIT MADRAS BS · EXCELLENCE · </textPath>
+          </text>
+        </svg>
+      </div>
+      <div class="preloader-logo-center">
+        <img src="assets/LOGO.JPEG" alt="Sundarbans" class="preloader-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="preloader-logo-letter" style="display:none">S</span>
+      </div>
+    </div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+    <div class="preloader-text">Loading Sundarbans...</div>
+  </div>
+</div>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+<div class="particles-bg" id="particlesBg"></div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <div class="search-input-row">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search pages, resources, events...">
+      <button id="searchClose">✕</button>
+    </div>
+    <div class="search-hint">Press Ctrl+K to open • Esc to close</div>
+    <div id="searchResults"></div>
+  </div>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<header class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="nav-left">
+      <div class="nav-logo-wrapper"><img src="assets/LOGO.JPEG" alt="Logo" class="nav-logo"><div class="logo-glow"></div></div>
+      <div class="brand-text"><span class="brand-main">SUNDARBANS</span><span class="brand-sub">IIT Madras BS</span></div>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link"><span>Home</span></a><a href="study.html" class="nav-link"><span>Study Corner</span></a><a href="events.html" class="nav-link"><span>Events</span></a><a href="gallery.html" class="nav-link"><span>Gallery</span></a><a href="meetups.html" class="nav-link  active"><span>Meetups</span></a><a href="about.html" class="nav-link"><span>About</span></a><a href="community.html" class="nav-link"><span>Community</span></a><a href="teams.html" class="nav-link"><span>Teams</span></a><a href="contact.html" class="nav-link"><span>Contact</span></a>
+      <a href="sundarbans/login.html" class="nav-cta-btn"><span>Members Lounge</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </nav>
+    <div class="nav-tools">
+      <button class="nav-tool-btn" id="searchBtn" aria-label="Search" title="Search (Ctrl+K)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div style="position:relative">
+        <button class="nav-tool-btn" id="notifBtn" aria-label="Notifications">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="notif-badge" id="notifBadge">3</span>
+        </button>
+        <div class="notif-panel" id="notifPanel">
+          <div class="notif-header"><h4>Notifications</h4><button class="notif-markall" onclick="markAllRead()">Mark all read</button></div>
+          <div class="notif-list" id="notifList"></div>
+          <div class="notif-footer"><a href="#">View all notifications</a></div>
+        </div>
+      </div>
+      <button class="nav-tool-btn" id="themeToggle" aria-label="Toggle theme" title="Toggle dark/light mode">
+        <span id="themeIcon">☀️</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80&auto=format&fit=crop" alt="Meetups"><div class="page-hero-overlay"></div></div>
+  <div class="container page-hero-content">
+    <div class="breadcrumb-nav"><a href="index.html">Home</a><span>/</span><span>Meetups</span></div>
+    <h1>City <span class="tg">Meetups</span></h1>
+    <p>Find and connect with Sundarbans members in your city</p>
+  </div>
+</section>
+<section class="section rs">
+  <div class="container">
+    <div class="sec-hdr"><div class="section-tag">Across India</div><h2 class="section-title-xl">Choose <span class="tg">your city</span></h2></div>
+    <div class="city-grid">
+      <div class="city-card rc" style="--card-delay:0.1s"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80&auto=format&fit=crop" alt="Delhi" class="city-img"><div class="city-ov"><div class="cn">Delhi</div><div class="cm">320+ members</div><a href="meetups/regions/delhi.html" class="cbtn">View →</a></div></div>
+      <div class="city-card rc" style="--card-delay:0.2s"><img src="https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?w=600&q=80&auto=format&fit=crop" alt="Mumbai" class="city-img"><div class="city-ov"><div class="cn">Mumbai</div><div class="cm">450+ members</div><a href="meetups/regions/mumbai.html" class="cbtn">View →</a></div></div>
+      <div class="city-card rc" style="--card-delay:0.3s"><img src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?w=600&q=80&auto=format&fit=crop" alt="Bangalore" class="city-img"><div class="city-ov"><div class="cn">Bangalore</div><div class="cm">580+ members</div><a href="meetups/regions/bangalore.html" class="cbtn">View →</a></div></div>
+      <div class="city-card rc" style="--card-delay:0.4s"><img src="https://images.unsplash.com/photo-1558431382-27e303142255?w=600&q=80&auto=format&fit=crop" alt="Kolkata" class="city-img"><div class="city-ov"><div class="cn">Kolkata</div><div class="cm">280+ members</div><a href="meetups/regions/kolkata.html" class="cbtn">View →</a></div></div>
+    </div>
+  </div>
+</section>
+<section class="section rs" style="background:var(--bg2)">
+  <div class="container">
+    <div class="sec-hdr"><div class="section-tag">Hall of Fame</div><h2 class="section-title-xl">Member <span class="tg">Leaderboard</span></h2><p class="sec-sub">Top contributors and most active members of Sundarbans House</p></div>
+    <div class="card-base">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:0.75rem">
+        <div class="filter-tabs" style="margin:0">
+          <div class="ftab active">All Time</div><div class="ftab">This Month</div><div class="ftab">This Week</div>
+        </div>
+        <span style="font-size:0.8rem;color:var(--text2)">Updated daily</span>
+      </div>
+      <table class="lboard-table">
+        <thead><tr><th>#</th><th>Member</th><th>City</th><th>Points</th><th>Badge</th></tr></thead>
+        <tbody>
+          <tr class="lboard-row"><td><span class="lboard-rank rank-1">🥇</span></td><td><div class="lboard-member"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&q=80&auto=format&fit=crop&crop=face" alt="" class="lboard-avatar"><div><div class="lboard-name">Arjun Sharma</div><div class="lboard-city">Delhi</div></div></div></td><td style="color:var(--text2);font-size:0.85rem">Delhi</td><td><span class="lboard-score">4,280</span></td><td><span class="lboard-badge">🔥 Top Contributor</span></td></tr>
+          <tr class="lboard-row"><td><span class="lboard-rank rank-2">🥈</span></td><td><div class="lboard-member"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&crop=face" alt="" class="lboard-avatar"><div><div class="lboard-name">Priya Patel</div><div class="lboard-city">Bangalore</div></div></div></td><td style="color:var(--text2);font-size:0.85rem">Bangalore</td><td><span class="lboard-score">3,950</span></td><td><span class="lboard-badge">⭐ Helper</span></td></tr>
+          <tr class="lboard-row"><td><span class="lboard-rank rank-3">🥉</span></td><td><div class="lboard-member"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face" alt="" class="lboard-avatar"><div><div class="lboard-name">Rahul Gupta</div><div class="lboard-city">Mumbai</div></div></div></td><td style="color:var(--text2);font-size:0.85rem">Mumbai</td><td><span class="lboard-score">3,720</span></td><td><span class="lboard-badge">📚 Academician</span></td></tr>
+          <tr class="lboard-row"><td><span class="lboard-rank" style="color:var(--text2)">4</span></td><td><div class="lboard-member"><div class="lboard-avatar-placeholder">S</div><div><div class="lboard-name">Sneha Iyer</div><div class="lboard-city">Chennai</div></div></div></td><td style="color:var(--text2);font-size:0.85rem">Chennai</td><td><span class="lboard-score">3,410</span></td><td><span class="lboard-badge">🎯 Event Pro</span></td></tr>
+          <tr class="lboard-row"><td><span class="lboard-rank" style="color:var(--text2)">5</span></td><td><div class="lboard-member"><div class="lboard-avatar-placeholder">V</div><div><div class="lboard-name">Vivek Menon</div><div class="lboard-city">Hyderabad</div></div></div></td><td style="color:var(--text2);font-size:0.85rem">Hyderabad</td><td><span class="lboard-score">3,180</span></td><td><span class="lboard-badge">💡 Innovator</span></td></tr>
+          <tr class="lboard-row"><td><span class="lboard-rank" style="color:var(--text2)">6</span></td><td><div class="lboard-member"><div class="lboard-avatar-placeholder">A</div><div><div class="lboard-name">Anjali Rao</div><div class="lboard-city">Pune</div></div></div></td><td style="color:var(--text2);font-size:0.85rem">Pune</td><td><span class="lboard-score">2,990</span></td><td><span class="lboard-badge">🤝 Community Builder</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="footer-wave-top"><svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#050A1A"/></svg></div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="fbrand">
+        <div class="flogo"><img src="assets/LOGO.JPEG" alt="Logo" class="flogo-img"><div><span class="fbrand-name">SUNDARBANS</span><span class="fbrand-sub">IIT Madras BS</span></div></div>
+        <p class="ftagline">Empowering minds, building futures — one student at a time.</p>
+        <div class="fsocial">
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></a>
+          <a href="#" class="soc-btn"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M22.46 6c-.85.38-1.78.64-2.75.76a4.8 4.8 0 0 0 2.1-2.66c-.92.55-1.95.95-3.04 1.17a4.77 4.77 0 0 0-8.13 4.35A13.55 13.55 0 0 1 1.64 4.9a4.75 4.75 0 0 0 1.48 6.37 4.74 4.74 0 0 1-2.16-.6v.06c0 2.31 1.65 4.24 3.83 4.68a4.8 4.8 0 0 1-2.15.08 4.78 4.78 0 0 0 4.46 3.31A9.57 9.57 0 0 1 1 20.12 13.5 13.5 0 0 0 8.29 22c8.75 0 13.54-7.25 13.54-13.54 0-.21 0-.41-.01-.61.93-.67 1.74-1.51 2.38-2.47z"/></svg></a>
+        </div>
+      </div>
+      <div class="flinks"><h4>Quick Links</h4><a href="about.html">About Us</a><a href="teams.html">Our Teams</a><a href="events.html">Events</a><a href="contact.html">Contact</a></div>
+      <div class="flinks"><h4>Resources</h4><a href="study.html">Study Corner</a><a href="gallery.html">Gallery</a><a href="meetups.html">Meetups</a><a href="community.html">Communities</a></div>
+      <div class="fnewsletter">
+        <h4>Stay Updated</h4><p>Get the latest from Sundarbans House</p>
+        <div class="nform"><input type="email" placeholder="Your email" class="ninput"><button class="nbtn">→</button></div>
+        <div class="iit-badge"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/80px-IIT_Madras_Logo.svg.png" alt="IIT Madras" class="iit-logo"><span>IIT Madras Affiliated</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Sundarbans House. Student-managed — not an official IIT Madras website.</p><div class="fbl"><a href="#">Privacy</a><span>·</span><a href="#">Terms</a><span>·</span><a href="contact.html">Contact</a></div></div>
+  </div>
+</footer>
+<script src="shared.js"></script>
+<script>document.querySelectorAll(".ftab").forEach(t=>t.addEventListener("click",function(){document.querySelectorAll(".ftab").forEach(x=>x.classList.remove("active"));this.classList.add("active");}));</script>
+</body>
+</html>

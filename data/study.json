@@ -1,0 +1,571 @@
+{
+  "foundation": [
+    {
+      "subject": "Mathematics for Data Science I",
+      "code": "BSMA1001",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Linear Algebra Basics", "link": "#", "badge": "Popular" },
+          { "title": "Calculus Fundamentals", "link": "#" },
+          { "title": "Introduction to Probability", "link": "#" }
+        ],
+        "notes": [
+          { "title": "Week 1-4 Notes", "link": "#" },
+          { "title": "Formula Sheet", "link": "#", "badge": "Popular" }
+        ],
+        "pyq": [
+          { "title": "Quiz 1 PYQ 2023", "link": "#" },
+          { "title": "End Term 2023", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Statistics for Data Science I",
+      "code": "BSMA1002",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Descriptive Statistics", "link": "#", "badge": "Popular" },
+          { "title": "Probability Distributions", "link": "#" }
+        ],
+        "notes": [
+          { "title": "Stats Week 1-4 Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "Quiz 1 PYQ 2023", "link": "#" },
+          { "title": "End Term 2022", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Computational Thinking",
+      "code": "BSCS1001",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Introduction to Algorithms", "link": "#" },
+          { "title": "Flowcharts & Pseudocode", "link": "#", "badge": "Popular" }
+        ],
+        "notes": [
+          { "title": "CT Complete Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "CT Quiz PYQ 2023", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "English I",
+      "code": "BSHS1001",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Grammar & Composition", "link": "#" },
+          { "title": "Reading Comprehension", "link": "#" }
+        ],
+        "notes": [
+          { "title": "English I Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "English I PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Mathematics for Data Science II",
+      "code": "BSMA1003",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Linear Algebra Basics", "link": "#", "badge": "Popular" },
+          { "title": "Multivariable Calculus", "link": "#" }
+        ],
+        "notes": [
+          { "title": "MDS II Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "MDS II PYQ 2023", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Statistics for Data Science II",
+      "code": "BSMA1004",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Hypothesis Testing", "link": "#", "badge": "Popular" },
+          { "title": "Regression Analysis", "link": "#" }
+        ],
+        "notes": [
+          { "title": "Stats II Complete Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "Stats II PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Programming in Python",
+      "code": "BSCS1002",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Python Basics", "link": "#", "badge": "Popular" },
+          { "title": "Functions & OOP", "link": "#" },
+          { "title": "Data Structures in Python", "link": "#" }
+        ],
+        "notes": [
+          { "title": "Python Cheat Sheet", "link": "#", "badge": "Popular" },
+          { "title": "Week-wise Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "Python Quiz PYQ", "link": "#" },
+          { "title": "Python End Term", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "English II",
+      "code": "BSHS1002",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Advanced Writing Skills", "link": "#" },
+          { "title": "Technical Communication", "link": "#" }
+        ],
+        "notes": [
+          { "title": "English II Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "English II PYQ", "link": "#" }
+        ]
+      }
+    }
+  ],
+  "diploma": [
+    {
+      "subject": "Database Management Systems",
+      "code": "BSCS2001",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "ER Model & Relational Algebra", "link": "#", "badge": "Popular" },
+          { "title": "SQL Queries", "link": "#" },
+          { "title": "Normalization", "link": "#" }
+        ],
+        "notes": [
+          { "title": "DBMS Complete Notes", "link": "#", "badge": "Popular" },
+          { "title": "SQL Cheat Sheet", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "DBMS Quiz PYQ", "link": "#" },
+          { "title": "DBMS End Term", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Programming, Data Structures & Algorithms",
+      "code": "BSCS2002",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Arrays & Linked Lists", "link": "#", "badge": "Popular" },
+          { "title": "Trees & Graphs", "link": "#" },
+          { "title": "Sorting & Searching Algorithms", "link": "#" }
+        ],
+        "notes": [
+          { "title": "PDSA Notes", "link": "#" },
+          { "title": "Algorithm Complexity Guide", "link": "#", "badge": "Popular" }
+        ],
+        "pyq": [
+          { "title": "PDSA PYQ 2023", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Modern Application Development I",
+      "code": "BSCS2003",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "HTML, CSS Basics", "link": "#" },
+          { "title": "JavaScript Fundamentals", "link": "#", "badge": "Popular" },
+          { "title": "Flask & REST APIs", "link": "#" }
+        ],
+        "notes": [
+          { "title": "MAD I Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "MAD I Quiz PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Programming Concepts using Java",
+      "code": "BSCS2005",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Java OOP Concepts", "link": "#", "badge": "Popular" },
+          { "title": "Exception Handling", "link": "#" },
+          { "title": "Collections & Generics", "link": "#" }
+        ],
+        "notes": [
+          { "title": "Java Complete Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "Java PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Modern Application Development II",
+      "code": "BSCS2006",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Vue.js / React Basics", "link": "#", "badge": "Popular" },
+          { "title": "Advanced REST & Authentication", "link": "#" }
+        ],
+        "notes": [
+          { "title": "MAD II Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "MAD II PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Machine Learning Foundations",
+      "code": "BSCS2004",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Supervised Learning", "link": "#", "badge": "Popular" },
+          { "title": "Unsupervised Learning", "link": "#" },
+          { "title": "Model Evaluation", "link": "#" }
+        ],
+        "notes": [
+          { "title": "MLF Notes", "link": "#" },
+          { "title": "ML Algorithm Summary", "link": "#", "badge": "Popular" }
+        ],
+        "pyq": [
+          { "title": "MLF PYQ 2023", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Business Data Management",
+      "code": "BSMS2001",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Business Data Concepts", "link": "#" },
+          { "title": "Data Visualization", "link": "#", "badge": "Popular" }
+        ],
+        "notes": [
+          { "title": "BDM Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "BDM PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Machine Learning Techniques",
+      "code": "BSCS2007",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Advanced Classification", "link": "#" },
+          { "title": "Neural Networks Intro", "link": "#", "badge": "Popular" }
+        ],
+        "notes": [
+          { "title": "MLT Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "MLT PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Machine Learning Practice",
+      "code": "BSCS2008",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Kaggle Projects Walkthrough", "link": "#", "badge": "Popular" },
+          { "title": "End-to-End ML Pipeline", "link": "#" }
+        ],
+        "notes": [
+          { "title": "MLP Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "MLP PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "System Commands",
+      "code": "BSSE2001",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Linux Basics", "link": "#", "badge": "Popular" },
+          { "title": "Shell Scripting", "link": "#" }
+        ],
+        "notes": [
+          { "title": "System Commands Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "SC PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Tools in Data Science",
+      "code": "BSSE2002",
+      "description": "Click to view resources",
+      "resources": {
+        "lectures": [
+          { "title": "Pandas & NumPy", "link": "#", "badge": "Popular" },
+          { "title": "Matplotlib & Seaborn", "link": "#" }
+        ],
+        "notes": [
+          { "title": "TDS Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "TDS PYQ", "link": "#" }
+        ]
+      }
+    }
+  ],
+  "bs": [
+    {
+      "subject": "Software Engineering",
+      "code": "BSCS3001",
+      "description": "Core Course",
+      "resources": {
+        "lectures": [
+          { "title": "SDLC & Agile", "link": "#", "badge": "Popular" },
+          { "title": "Design Patterns", "link": "#" },
+          { "title": "Software Architecture", "link": "#" }
+        ],
+        "notes": [
+          { "title": "SE Complete Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "SE PYQ 2023", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Software Testing",
+      "code": "BSCS3002",
+      "description": "Core Course",
+      "resources": {
+        "lectures": [
+          { "title": "Unit & Integration Testing", "link": "#", "badge": "Popular" },
+          { "title": "Test Automation", "link": "#" }
+        ],
+        "notes": [
+          { "title": "Software Testing Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "ST PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "AI: Search Methods for Problem Solving",
+      "code": "BSCS3003",
+      "description": "Core Course",
+      "resources": {
+        "lectures": [
+          { "title": "BFS, DFS, A*", "link": "#", "badge": "Popular" },
+          { "title": "Heuristic Search", "link": "#" }
+        ],
+        "notes": [
+          { "title": "AI Search Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "AI Search PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Deep Learning",
+      "code": "BSCS3004",
+      "description": "Core Course",
+      "resources": {
+        "lectures": [
+          { "title": "CNN & RNN", "link": "#", "badge": "Popular" },
+          { "title": "Transformers & Attention", "link": "#" },
+          { "title": "Transfer Learning", "link": "#" }
+        ],
+        "notes": [
+          { "title": "Deep Learning Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "DL PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Strategies for Professional Growth",
+      "code": "BSGN3001",
+      "description": "Mandatory Course",
+      "resources": {
+        "lectures": [
+          { "title": "Communication Skills", "link": "#" },
+          { "title": "Career Planning", "link": "#", "badge": "Popular" }
+        ],
+        "notes": [
+          { "title": "SPG Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "SPG PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Large Language Models",
+      "code": "BSDA5004",
+      "description": "Elective",
+      "resources": {
+        "lectures": [
+          { "title": "Transformer Architecture", "link": "#", "badge": "Popular" },
+          { "title": "Fine-tuning LLMs", "link": "#" },
+          { "title": "Prompt Engineering", "link": "#" }
+        ],
+        "notes": [
+          { "title": "LLM Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "LLM PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Introduction to NLP (i-NLP)",
+      "code": "BSDA5005",
+      "description": "Elective",
+      "resources": {
+        "lectures": [
+          { "title": "Tokenization & Embeddings", "link": "#" },
+          { "title": "Sentiment Analysis", "link": "#", "badge": "Popular" }
+        ],
+        "notes": [
+          { "title": "NLP Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "NLP PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Deep Learning for Computer Vision",
+      "code": "BSDA5006",
+      "description": "Elective",
+      "resources": {
+        "lectures": [
+          { "title": "Object Detection (YOLO)", "link": "#", "badge": "Popular" },
+          { "title": "Image Segmentation", "link": "#" }
+        ],
+        "notes": [
+          { "title": "CV Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "CV PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Mathematical Foundations of Generative AI",
+      "code": "BSDA5002",
+      "description": "Elective",
+      "resources": {
+        "lectures": [
+          { "title": "VAEs & GANs", "link": "#", "badge": "Popular" },
+          { "title": "Diffusion Models", "link": "#" }
+        ],
+        "notes": [
+          { "title": "GenAI Math Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "GenAI PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Algorithmic Thinking in Bioinformatics",
+      "code": "BSBT4001",
+      "description": "Elective",
+      "resources": {
+        "lectures": [
+          { "title": "Sequence Alignment", "link": "#" },
+          { "title": "Phylogenetics", "link": "#" }
+        ],
+        "notes": [
+          { "title": "Bioinformatics Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "Bioinformatics PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Operating Systems",
+      "code": "BSCS4022",
+      "description": "Elective",
+      "resources": {
+        "lectures": [
+          { "title": "Process Management", "link": "#", "badge": "Popular" },
+          { "title": "Memory & File Systems", "link": "#" }
+        ],
+        "notes": [
+          { "title": "OS Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "OS PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Computer Networks",
+      "code": "BSCS4024",
+      "description": "Elective",
+      "resources": {
+        "lectures": [
+          { "title": "TCP/IP & OSI Model", "link": "#", "badge": "Popular" },
+          { "title": "Network Security", "link": "#" }
+        ],
+        "notes": [
+          { "title": "CN Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "CN PYQ", "link": "#" }
+        ]
+      }
+    },
+    {
+      "subject": "Machine Learning Operations (MLOps)",
+      "code": "BSDA5014",
+      "description": "Elective",
+      "resources": {
+        "lectures": [
+          { "title": "CI/CD for ML", "link": "#", "badge": "Popular" },
+          { "title": "Model Monitoring", "link": "#" }
+        ],
+        "notes": [
+          { "title": "MLOps Notes", "link": "#" }
+        ],
+        "pyq": [
+          { "title": "MLOps PYQ", "link": "#" }
+        ]
+      }
+    }
+  ]
+}

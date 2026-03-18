@@ -1,0 +1,24 @@
+{
+  "results": {
+    "strategist": {
+      "title": "The Strategist",
+      "icon": "🧠",
+      "description": "Logical, disciplined, and consistent. You plan before you act and believe in long-term growth."
+    },
+    "creative": {
+      "title": "The Creative",
+      "icon": "🎨",
+      "description": "You think visually and emotionally. You bring color, ideas, and originality to the house."
+    },
+    "builder": {
+      "title": "The Builder",
+      "icon": "💻",
+      "description": "You love execution. You turn ideas into reality through technology and action."
+    },
+    "connector": {
+      "title": "The Connector",
+      "icon": "🤝",
+      "description": "People matter to you. You connect, support, and strengthen the community."
+    }
+  }
+}

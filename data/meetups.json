@@ -1,0 +1,46 @@
+[
+  {
+    "city": "Delhi NCR",
+    "date": "15 February 2026",
+    "time": "2:00 PM - 6:00 PM",
+    "venue": "Central Park, Connaught Place, New Delhi",
+    "description": "Join fellow Sundarbans House members for an afternoon of networking, games, and community bonding. Meet students from different batches and share your IITM BS journey.",
+    "registrationLink": "#",
+    "detailsLink": "#",
+    "registrationOpen": true,
+    "attendees": 45
+  },
+  {
+    "city": "Bangalore",
+    "date": "22 February 2026",
+    "time": "3:00 PM - 7:00 PM",
+    "venue": "Cubbon Park, Near Central Library, Bangalore",
+    "description": "Bangalore meetup featuring interactive sessions with alumni, academic discussions, and fun activities. Perfect opportunity to expand your network in the tech capital!",
+    "registrationLink": "#",
+    "detailsLink": "#",
+    "registrationOpen": true,
+    "attendees": 62
+  },
+  {
+    "city": "Mumbai",
+    "date": "1 March 2026",
+    "time": "4:00 PM - 8:00 PM",
+    "venue": "Marine Drive Promenade, Mumbai",
+    "description": "Mumbai Sundarbans meetup with seaside vibes! Connect with house members, participate in team activities, and enjoy the evening at Marine Drive.",
+    "registrationLink": "#",
+    "detailsLink": "#",
+    "registrationOpen": true,
+    "attendees": 38
+  },
+  {
+    "city": "Chennai",
+    "date": "8 March 2026",
+    "time": "10:00 AM - 2:00 PM",
+    "venue": "Elliots Beach, Besant Nagar, Chennai",
+    "description": "Morning meetup at the beautiful Elliots Beach. Special session on exam preparation strategies and campus visit opportunities for interested students.",
+    "registrationLink": "#",
+    "detailsLink": "#",
+    "registrationOpen": true,
+    "attendees": 51
+  }
+]
