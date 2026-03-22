@@ -2628,3 +2628,13 @@ body:hover #cursor-glow {
 }
 
 
+.hero-bg-video {
+  position: fixed;       /* makes it cover entire screen */
+  top: 0;
+  left: 0;
+  width: 100vw;          /* full viewport width */
+  height: 100vh;         /* full viewport height */
+  object-fit: cover;     /* prevents stretching */
+  z-index: -1;           /* sends it behind content */
+}
+
