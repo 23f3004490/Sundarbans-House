@@ -933,73 +933,32 @@
         .querySelectorAll(".hero-stats")
         .forEach((el) => cobs.observe(el));
 
-      function setupScrollScrubBackgroundVideo() {
+      function setupBackgroundVideo() {
         const video = document.getElementById("heroBgVideo");
         if (!video) return;
 
         document.body.classList.add("video-bg-mode");
 
-        let duration = 0;
-        let targetTime = 0;
-        let currentTime = 0;
-        let ticking = false;
-        let scrubMode = false;
-        const easing = 0.14;
-
-        function getScrollProgress() {
-          const maxScroll =
-            document.documentElement.scrollHeight - window.innerHeight;
-          if (maxScroll <= 0) return 0;
-          return Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
-        }
-
-        function updateTargetFromScroll() {
-          if (!scrubMode) {
-            scrubMode = true;
-            video.pause();
-            video.loop = false;
-          }
-          if (!duration) return;
-          targetTime = getScrollProgress() * duration;
-          if (!ticking) {
-            ticking = true;
-            requestAnimationFrame(scrubFrame);
-          }
-        }
-
-        function scrubFrame() {
-          const delta = targetTime - currentTime;
-          if (Math.abs(delta) < 0.001) {
-            currentTime = targetTime;
-            try {
-              video.currentTime = currentTime;
-            } catch (_) {}
-            ticking = false;
-            return;
-          }
-
-          currentTime += delta * easing;
-          try {
-            video.currentTime = currentTime;
-          } catch (_) {}
-          requestAnimationFrame(scrubFrame);
-        }
-
         video.muted = true;
         video.loop = true;
+        video.playsInline = true;
         video.play().catch(() => {});
 
-        video.addEventListener("loadedmetadata", () => {
-          duration = Math.max((video.duration || 0) - 0.08, 0);
+        // Re-attempt play on user interaction (for strict autoplay policies)
+        document.addEventListener("click", () => {
+          if (video.paused) video.play().catch(() => {});
+        }, { once: true });
 
-          window.addEventListener("scroll", updateTargetFromScroll, {
-            passive: true,
-          });
-          window.addEventListener("resize", updateTargetFromScroll);
-        });
+        // Subtle parallax effect on scroll (video keeps playing)
+        window.addEventListener("scroll", () => {
+          const scrollY = window.scrollY;
+          const scale = 1.08 + scrollY * 0.0001;
+          const translateY = scrollY * 0.15;
+          video.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+        }, { passive: true });
       }
 
-      setupScrollScrubBackgroundVideo();
+      setupBackgroundVideo();
 
       const pb = document.getElementById("particlesBg");
       for (let i = 0; i < 25; i++) {
